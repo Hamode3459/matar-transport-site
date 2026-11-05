@@ -1,0 +1,1042 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>
+:root{color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px/1.4 system-ui,-apple-system,sans-serif;-webkit-text-size-adjust:100%}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<meta name="description" content="מטר הסעות – הסעות VIP לכל הארץ. מיניבוסים חדשים ונוחים מ־2 עד 60 מקומות, נתב״ג, מעבר נהר הירדן, חתונות, אילת וטיולים פרטיים. זמינות 24/7: 052-4406710">
+<meta name="theme-color" content="#050817">
+<meta property="og:type" content="website">
+<meta property="og:title" content="מטר הסעות · Matar Transport">
+<meta property="og:description" content="הסעות VIP לכל הארץ · 24/7 · 052-4406710">
+<meta property="og:image" content="img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Matar Transport</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Lalezar&family=Assistant:wght@400;600;700&family=Cairo:wght@400;600;700&family=Rubik:wght@500;700&display=swap">
+<style>
+/* Layout: night departures hall. Hero = the night Sprinter photo; then a seat-map fleet picker, trip types, real photos, and a boarding-pass booking that goes out on WhatsApp. */
+:root{
+  --night:#050817; --panel:#0b1130; --flap:#131b44; --line:#1f2a62;
+  --ink:#eef1ff; --mute:#8f99c8; --gold:#d6a645; --gold-hi:#f4d48a; --gold-lo:#9c7224;
+  --go:#7cd38c; --paper:#f3e6c4; --paper-ink:#1c160c;
+  --led:#3b5cff; --led-hi:#9db4ff; --glow:rgba(59,92,255,.6); --glow-soft:rgba(59,92,255,.2);
+  --bubble:#14234a; --shade:rgba(0,0,0,.45);
+  --display:"Secular One","Lalezar","Assistant",system-ui,sans-serif;
+  --body:"Assistant","Cairo",system-ui,sans-serif;
+  --board:"Rubik","Cairo","Assistant",system-ui,sans-serif;
+  --r:14px;
+  color-scheme:dark;
+}
+body.day{
+  --night:#f4f6fd; --panel:#ffffff; --flap:#e8ecf8; --line:#dce2f3;
+  --ink:#0c1333; --mute:#566087; --gold:#b07a14; --gold-hi:#d29a2c; --gold-lo:#7d540a;
+  --led:#2f52ff; --led-hi:#2f52ff; --glow:rgba(47,82,255,.28); --glow-soft:rgba(47,82,255,.1);
+  --bubble:#e3f5e8; --shade:rgba(20,30,80,.14);
+  color-scheme:light;
+}
+html{scroll-behavior:smooth}
+body{transition:background-color .4s,color .4s;background:var(--night);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+.wrap{max-width:1120px;margin-inline:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+.gold-text{background:linear-gradient(180deg,var(--gold-hi),var(--gold) 55%,var(--gold-lo));-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font-family:var(--board);font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+section{padding-block:72px}
+.sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.sec-head h2{font-size:clamp(2rem,5vw,3rem)}
+.sec-head p{margin:0;color:var(--mute);max-width:60ch}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--night) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
+.bar{max-width:1120px;margin-inline:auto;display:flex;align-items:center;gap:14px;padding-block:12px;padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.logo{font-family:var(--display);font-size:1.5rem;text-decoration:none;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.logo i{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+nav{display:flex;gap:18px;margin-inline-start:auto}
+nav a{text-decoration:none;color:var(--mute);font-weight:600}
+nav a:hover{color:var(--ink)}
+.langs{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.langs button{background:none;border:0;color:var(--mute);font:600 .85rem var(--body);padding:6px 10px;cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--gold);color:var(--paper-ink)}
+.themebtn{background:var(--panel);border:1px solid var(--line);color:var(--led-hi);border-radius:999px;height:34px;padding:0 12px;display:flex;align-items:center;gap:6px;cursor:pointer;font:700 .85rem var(--body);box-shadow:0 0 14px var(--glow-soft);transition:all .3s}
+.themebtn svg{width:17px;height:17px}
+.themebtn .sun{display:none}
+body.day .themebtn .sun{display:block}
+body.day .themebtn .moon{display:none}
+@media (max-width:720px){nav{display:none}.themebtn{margin-inline-start:auto}.themebtn span{display:none}.themebtn{width:38px;justify-content:center;padding:0}}
+/* LED glow */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:8;background:radial-gradient(55% 35% at 0 0,var(--glow-soft),transparent 70%),radial-gradient(55% 35% at 100% 100%,var(--glow-soft),transparent 70%)}
+header{box-shadow:0 1px 0 var(--led),0 8px 30px -10px var(--glow)}
+.trip,.fleet,.pack,.driver,.stat,.strip,.prices,details.group{box-shadow:0 0 0 1px var(--glow-soft),0 14px 44px -18px var(--glow)}
+.hero-photo,.gallery figure{box-shadow:0 0 60px -12px var(--glow)}
+.seat.on{background:linear-gradient(180deg,var(--led-hi),var(--led));border-color:var(--led);box-shadow:0 0 8px var(--glow)}
+.logo i{background:var(--led)!important;box-shadow:0 0 12px var(--led)!important}
+.vip{color:var(--led-hi);text-shadow:0 0 18px var(--led),0 0 42px var(--glow)}
+body.day .vip{color:var(--led);text-shadow:0 0 22px var(--glow-soft)}
+.strip svg{color:var(--led-hi)!important}
+input:focus,select:focus,textarea:focus{border-color:var(--led)!important;box-shadow:0 0 0 3px var(--glow-soft)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:14px 24px;font:700 1.05rem var(--body);text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn-gold{background:linear-gradient(180deg,var(--gold-hi),var(--gold));color:var(--paper-ink)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:var(--panel)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center;padding-block:56px 40px}
+.hero > *{min-width:0}
+.hero h1{font-size:clamp(2.7rem,7.5vw,5.4rem);margin-block:10px 18px}
+.hero h1 .gold-text{display:inline}
+.hero p.lead{font-size:1.2rem;color:var(--ink);opacity:.85;max-width:34ch;margin:0 0 28px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.phone-line{margin-top:22px;color:var(--mute);font-family:var(--board);direction:ltr;unicode-bidi:isolate;display:inline-block;font-size:1.1rem;letter-spacing:.06em;user-select:all}
+@media (max-width:880px){.hero{grid-template-columns:1fr;gap:36px}}
+
+/* hero photo */
+.hero-photo{margin:0;position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);}
+.hero-photo img{display:block;width:100%;max-width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 70%}
+.hero-photo .tag{position:absolute;inset-block-start:16px;inset-inline-start:16px;background:var(--gold);color:var(--paper-ink);font:700 .8rem var(--board);letter-spacing:.12em;padding:6px 12px;border-radius:999px}
+@media (max-width:880px){.hero-photo img{aspect-ratio:4/3}}
+
+/* trust strip */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.strip div{background:var(--panel);padding:20px 22px;display:flex;gap:14px;align-items:center}
+.strip svg{width:34px;height:34px;color:var(--gold);flex:none}
+.strip b{display:block;font-size:1.05rem}
+.strip span{color:var(--mute);font-size:.95rem}
+@media (max-width:720px){.strip{grid-template-columns:1fr}}
+
+/* fleet */
+.fleet{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,40px);display:grid;gap:28px}
+.pax-wrap{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.pax-num{font-family:var(--display);font-size:clamp(4.5rem,13vw,8rem);line-height:.85;font-variant-numeric:tabular-nums;min-width:2ch;text-align:center}
+.pax-num small{display:block;font-family:var(--board);font-size:.8rem;letter-spacing:.14em;color:var(--mute);margin-top:10px;text-transform:uppercase}
+.pax-side{display:grid;gap:14px;min-width:0}
+.vname{font-family:var(--display);font-size:clamp(1.5rem,3.5vw,2.2rem)}
+.vcap{color:var(--mute)}
+input[type=range]{width:100%;accent-color:var(--gold);height:28px}
+.vehicles{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.veh{background:var(--night);border:1px solid var(--line);border-radius:12px;padding:12px 8px 10px;color:var(--mute);cursor:pointer;display:grid;gap:4px;justify-items:center;font:600 .85rem var(--body);transition:border-color .2s,color .2s}
+.veh svg{width:100%;max-width:120px;height:44px}
+.veh[aria-pressed="true"]{border-color:var(--gold);color:var(--gold-hi);background:color-mix(in srgb,var(--gold) 8%,var(--night))}
+.veh b{font-family:var(--board);font-size:.8rem;font-variant-numeric:tabular-nums}
+@media (max-width:620px){.vehicles{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.veh{padding:8px 4px;font-size:.7rem}.veh .vl{display:none}.pax-wrap{grid-template-columns:1fr;gap:12px}.pax-num{text-align:start}}
+.hull-wrap{overflow-x:auto;padding-block:6px}
+.hull{display:inline-flex;align-items:stretch;gap:8px;border:2px solid var(--line);border-radius:28px 12px 12px 28px;padding:12px 14px;background:var(--night);transition:all .35s}
+[dir=rtl] .hull{border-radius:12px 28px 28px 12px}
+.nose{width:30px;border-inline-end:2px dashed var(--line);display:grid;place-items:center;color:var(--gold)}
+.nose svg{width:22px;height:22px}
+.seats{display:grid;grid-template-rows:repeat(2,18px) 10px repeat(2,18px);grid-auto-flow:column;grid-auto-columns:18px;column-gap:6px;row-gap:5px}
+.seat{border-radius:5px 5px 3px 3px;background:var(--flap);border:1px solid var(--line);transition:background .25s,border-color .25s,transform .25s}
+.seat.on{background:linear-gradient(180deg,var(--gold-hi),var(--gold));border-color:var(--gold);transform:translateY(-1px)}
+.seat-note{color:var(--mute);font-size:.95rem;margin:4px 0 0}
+
+/* trips */
+.trips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.trip{text-align:start;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;color:var(--ink);cursor:pointer;display:grid;gap:10px;align-content:start;font:inherit;transition:border-color .2s,transform .2s}
+.trip:hover{border-color:var(--gold);transform:translateY(-3px)}
+.trip svg{width:38px;height:38px;color:var(--gold)}
+.trip h3{font-size:1.45rem}
+.trip p{margin:0;color:var(--mute)}
+.trip .go{font-weight:700;color:var(--gold-hi);font-size:.95rem}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:250px;grid-auto-flow:dense;gap:14px}
+.gallery .tall{grid-row:span 2}.gallery .wide{grid-column:span 2}
+.gallery figure{margin:0;position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.gallery img{display:block;width:100%;height:100%;object-fit:cover;max-width:100%}
+.gallery figcaption{position:absolute;inset:auto 0 0;padding:28px 16px 12px;background:linear-gradient(transparent,rgba(0,0,0,.85));font-weight:600}
+@media (max-width:720px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:200px}}
+@media (max-width:480px){.gallery{grid-template-columns:1fr;grid-auto-rows:240px}.gallery .tall{grid-row:span 2}.gallery .wide{grid-column:auto}}
+
+/* packages */
+.packs{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.pack{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:14px;align-content:start;text-align:start;color:var(--ink);font:inherit;cursor:pointer;transition:border-color .2s,transform .2s}
+.pack:hover{border-color:var(--gold);transform:translateY(-3px)}
+.pack h3{font-size:1.45rem}
+.pack p{margin:0;color:var(--mute)}
+.pline{display:flex;align-items:center;gap:0}
+.pline i{width:12px;height:12px;border-radius:50%;background:var(--gold);flex:none}
+.pline b{height:2px;flex:1;background:repeating-linear-gradient(90deg,var(--gold) 0 6px,transparent 6px 10px);min-width:14px}
+.pline svg{width:20px;height:20px;color:var(--gold-hi);flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 .8rem var(--board);padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink)}
+.pack .go{font-weight:700;color:var(--gold-hi);font-size:.95rem}
+
+/* driver */
+.driver{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,32px)}
+.driver > *{min-width:0}
+.avatar{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,var(--gold-hi),var(--gold-lo));color:var(--paper-ink);font:400 2rem var(--display);overflow:hidden;box-shadow:0 0 0 4px var(--night),0 0 0 5px var(--gold)}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.driver h2{font-size:clamp(1.8rem,4vw,2.4rem);margin-block:4px}
+.driver p{margin:0;color:var(--mute);max-width:52ch}
+.driver .role{color:var(--gold-hi);font-weight:700;margin-bottom:6px}
+@media (max-width:720px){.driver{grid-template-columns:auto 1fr}.driver .btn{grid-column:1/-1}.avatar{width:72px;height:72px;font-size:1.5rem}}
+
+/* proof */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.stat b{display:block;font:400 clamp(2.4rem,6vw,3.4rem)/1 var(--display);font-variant-numeric:tabular-nums}
+.stat span{color:var(--mute)}
+.reviews{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;align-items:start}
+.bubble{background:var(--bubble);border-radius:14px 14px 14px 4px;padding:14px 16px 10px;position:relative}
+[dir=rtl] .bubble{border-radius:14px 14px 4px 14px}
+.bubble p{margin:0 0 6px;white-space:pre-line}
+.bubble small{color:var(--mute);display:flex;justify-content:space-between;gap:8px}
+.prices{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.prices div{background:var(--panel);display:flex;justify-content:space-between;gap:16px;padding:16px 20px;align-items:baseline}
+.prices b{font:700 1.2rem var(--board);color:var(--gold-hi);font-variant-numeric:tabular-nums;white-space:nowrap}
+.note{color:var(--mute);font-size:.92rem;margin:10px 0 0}
+
+/* interior tour */
+.tour-btn{position:absolute;inset-block-start:14px;inset-inline-start:14px;display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--paper-ink);border:0;border-radius:999px;padding:8px 14px;font:700 .9rem var(--body);cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.tour-btn svg{width:18px;height:18px}
+.gallery figure.tall{cursor:zoom-in}
+dialog#tour{border:0;padding:0;background:transparent;color:var(--ink);max-width:none;max-height:none;overflow:visible}
+dialog#tour::backdrop{background:rgba(4,5,10,.88);backdrop-filter:blur(4px)}
+.tour-stage{position:relative;width:min(92vw,calc(78vh * .75));aspect-ratio:3/4;max-width:100%;border-radius:18px;overflow:hidden;border:1px solid var(--led);box-shadow:0 0 80px -10px var(--glow)}
+.tour-pan{position:absolute;inset:0;animation:pan 16s ease-in-out infinite alternate}
+.tour-pan img{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes pan{0%{transform:scale(1.12) translate(3%,3%)}100%{transform:scale(1.12) translate(-3%,-3%)}}
+.hs{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:2px solid var(--paper);background:var(--gold);cursor:pointer;padding:0}
+.hs::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--gold);animation:ring 1.8s ease-out infinite}
+.hs[aria-pressed="true"]{background:var(--paper)}
+@keyframes ring{from{transform:scale(.6);opacity:1}to{transform:scale(1.5);opacity:0}}
+.tour-cap{margin:14px auto 0;max-width:min(92vw,520px);text-align:center;font:400 1.3rem var(--display);min-height:1.6em}
+.tour-x{position:absolute;inset-block-start:-14px;inset-inline-end:-14px;width:40px;height:40px;border-radius:50%;border:0;background:var(--paper);color:var(--paper-ink);font:700 1.4rem/1 var(--body);cursor:pointer;z-index:2}
+@media (max-width:520px){.tour-x{inset-block-start:8px;inset-inline-end:8px}}
+
+/* scan */
+.scan{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.scan > *{min-width:0}
+#qr{background:var(--paper);padding:12px;border-radius:14px;line-height:0}
+#qr img,#qr canvas{width:150px;height:150px}
+.scan h2{font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:8px}
+.scan p{margin:0;color:var(--mute)}
+.social{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.social a{border:1px solid var(--line);border-radius:999px;padding:8px 16px;text-decoration:none;font-weight:700}
+@media (max-width:560px){.scan{grid-template-columns:1fr}}
+
+/* booking */
+.book{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.book > *{min-width:0}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{display:grid;gap:6px}
+.f.full{grid-column:1/-1}
+label{font-size:.85rem;font-weight:700;color:var(--mute);letter-spacing:.02em}
+input,select,textarea{width:100%;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:1rem}
+textarea{min-height:76px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+.seg{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px;position:relative}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{text-align:center;padding:10px 12px;border-radius:999px;cursor:pointer;color:var(--mute);font-size:1rem;letter-spacing:0;transition:background .2s,color .2s}
+.seg input:checked+label{background:linear-gradient(180deg,var(--gold-hi),var(--gold));color:var(--paper-ink)}
+.seg input:focus-visible+label{outline:2px solid var(--gold-hi);outline-offset:2px}
+@media (max-width:880px){.book{grid-template-columns:1fr}}
+.again{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;border:1px dashed var(--gold);border-radius:var(--r);padding:14px 18px;margin-bottom:20px}
+.again small{display:block;color:var(--mute);font-size:.85rem}
+.again b{overflow-wrap:anywhere}
+.again .btn{padding:10px 18px}
+.stops{grid-column:1/-1;display:grid;gap:10px}
+.stop{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end}
+.stop button,.addstop{background:var(--panel);border:1px solid var(--line);color:var(--ink);border-radius:10px;cursor:pointer;font:600 .95rem var(--body)}
+.stop button{width:46px;height:47px;font-size:1.2rem}
+.addstop{justify-self:start;padding:10px 14px;border-style:dashed;color:var(--gold-hi)}
+.est{grid-column:1/-1;margin:-4px 0 0;color:var(--gold-hi);font-size:.95rem;min-height:1.4em}
+details.group{grid-column:1/-1;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+details.group summary{cursor:pointer;padding:14px 16px;font-weight:700;color:var(--gold-hi)}
+.grp{display:grid;gap:12px;padding:0 16px 16px}
+.grp .msg{background:var(--night);border:1px solid var(--line);border-radius:10px;padding:12px;margin:0;white-space:pre-line}
+.grp-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.grp-row .btn{padding:10px 16px;font-size:.95rem}
+.counter{display:flex;align-items:center;gap:10px}
+.counter button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--night);color:var(--ink);font:700 1.2rem var(--body);cursor:pointer}
+.counter output{font:400 2rem var(--display);min-width:2ch;text-align:center;font-variant-numeric:tabular-nums}
+.tk-stops{font:600 .85rem var(--board);opacity:.75;margin-top:-6px}
+@media (max-width:420px){form{grid-template-columns:1fr}}
+
+.ticket{background:var(--paper);color:var(--paper-ink);border-radius:16px;position:relative;display:grid;grid-template-rows:auto auto;filter:drop-shadow(0 24px 40px var(--shade)) drop-shadow(0 0 30px var(--glow-soft));
+  -webkit-mask:radial-gradient(circle 13px at 0 calc(100% - 75px),#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% calc(100% - 75px),#0000 98%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 13px at 0 calc(100% - 75px),#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 13px at 100% calc(100% - 75px),#0000 98%,#000) right/51% 100% no-repeat}
+.tk-main{padding:22px 24px 18px;display:grid;gap:16px}
+.tk-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tk-top .brand{font-family:var(--display);font-size:1.3rem}
+.tk-tags{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.mode{font:700 .72rem var(--board);letter-spacing:.08em;padding:3px 10px;border-radius:999px;border:1.5px solid var(--paper-ink)}
+.mode.round{background:var(--paper-ink);color:var(--paper)}
+.tk-top .lbl{font-family:var(--board);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;opacity:.65}
+.tk-type{display:flex;align-items:center;gap:8px;font:700 .85rem var(--board);color:var(--gold-lo)}
+.tk-type svg{width:18px;height:18px;flex:none}
+.route b.pop,.tk-type.pop{animation:pop .45s ease}
+@keyframes pop{0%{opacity:0;transform:translateY(6px) rotateX(70deg)}100%{opacity:1;transform:none}}
+.route{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px}
+.route .pt{min-width:0}
+.route .pt:last-of-type{text-align:end}
+.route small,.tk-grid small{display:block;font-family:var(--board);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.route b{font-family:var(--display);font-size:clamp(1.3rem,4vw,1.9rem);font-weight:400;display:block;overflow-wrap:anywhere;line-height:1.15}
+.route svg{width:46px;height:24px;color:var(--gold-lo)}
+[dir=rtl] .route svg{transform:scaleX(-1)}
+.tk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;border-top:1.5px dashed rgba(28,22,12,.3);padding-top:14px}
+.tk-grid b{font-family:var(--board);font-weight:700;font-variant-numeric:tabular-nums;font-size:1rem;overflow-wrap:anywhere}
+.tk-stub{border-top:2px dashed rgba(28,22,12,.35);padding:16px 24px 20px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.tk-stub .code{font-family:var(--board);font-weight:700;letter-spacing:.12em;direction:ltr}
+.barcode{height:38px;flex:1;max-width:200px;background:repeating-linear-gradient(90deg,var(--paper-ink) 0 2px,transparent 2px 4px,var(--paper-ink) 4px 5px,transparent 5px 8px,var(--paper-ink) 8px 11px,transparent 11px 12px)}
+.tk-ret{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;border-top:1.5px dashed rgba(28,22,12,.3);padding-top:14px}
+.tk-ret small{display:block;font-family:var(--board);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+.tk-ret b{font-family:var(--board);font-weight:700;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+@media (max-width:420px){.tk-grid{grid-template-columns:1fr 1fr}.tk-ret{grid-template-columns:1fr 1fr}.tk-ret>div:first-child{grid-column:1/-1}}
+.send{display:grid;gap:12px;margin-top:22px}
+.send .btn{width:100%}
+.hint{color:var(--mute);font-size:.92rem;margin:0}
+.copy-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.copy-row code{font-family:var(--board);font-size:1.2rem;color:var(--gold-hi);direction:ltr;user-select:all;letter-spacing:.05em}
+.copy-row button{background:var(--panel);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:6px 14px;font:600 .9rem var(--body);cursor:pointer}
+
+footer{border-top:1px solid var(--line);padding-block:32px 40px;color:var(--mute);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center}
+footer .logo{color:var(--ink)}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* intro: 3D night arrival */
+#intro{position:fixed;inset:0;z-index:100;background:#050817;color:#eef1ff;transition:opacity .8s ease,visibility .8s}
+#intro.out{opacity:0;visibility:hidden;pointer-events:none}
+#introCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#intro .shade{position:absolute;inset:auto 0 0;height:55%;background:linear-gradient(transparent,rgba(5,8,23,.92));pointer-events:none}
+.intro-copy{position:absolute;inset:auto 0 0;display:grid;justify-items:center;gap:14px;text-align:center;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-bottom:calc(44px + env(safe-area-inset-bottom,0px));opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+#intro.show .intro-copy{opacity:1;transform:none}
+.intro-brand{font:500 .82rem var(--board);letter-spacing:.24em;text-transform:uppercase;color:#f4d48a}
+.intro-title{font:400 clamp(2.1rem,7vw,4.4rem)/1.05 var(--display);margin:0;text-wrap:balance;max-width:16ch}
+#intro .vip{color:#9db4ff;text-shadow:0 0 18px #3b5cff,0 0 42px rgba(59,92,255,.6)}
+#intro .gold-text{background:linear-gradient(180deg,#f4d48a,#d6a645 55%,#9c7224);-webkit-background-clip:text;background-clip:text;color:transparent}
+#introSkip{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));inset-inline-end:max(16px,env(safe-area-inset-right,0px));background:rgba(11,17,48,.6);border:1px solid #1f2a62;color:#eef1ff;border-radius:999px;padding:8px 16px;font:600 .9rem var(--body);cursor:pointer;backdrop-filter:blur(6px)}
+#introEnter{color:#1c160c}
+.intro-bar{position:absolute;top:0;inset-inline:0;height:2px;background:#3b5cff;box-shadow:0 0 10px #3b5cff;transform-origin:left;transform:scaleX(0)}
+[dir=rtl] .intro-bar{transform-origin:right}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="wheels"><circle cx="30" cy="38" r="7"/><circle cx="94" cy="38" r="7"/></g>
+    <symbol id="v0" viewBox="0 0 124 48"><path fill="currentColor" d="M6 37 L12 26 Q28 13 50 13 L72 13 Q86 13 97 24 L113 28 Q118 30 118 35 V37 Z"/><use href="#wheels" fill="currentColor"/></symbol>
+    <symbol id="v1" viewBox="0 0 124 48"><path fill="currentColor" d="M6 37 V22 Q8 12 20 11 H82 Q92 11 101 21 L113 25 Q118 27 118 33 V37 Z"/><use href="#wheels" fill="currentColor"/></symbol>
+    <symbol id="v2" viewBox="0 0 124 48"><path fill="currentColor" d="M4 37 V9 Q4 5 9 5 H86 Q95 5 102 15 L113 24 Q118 27 118 32 V37 Z"/><use href="#wheels" fill="currentColor"/></symbol>
+    <symbol id="v3" viewBox="0 0 124 48"><path fill="currentColor" d="M4 37 V8 Q4 4 9 4 H108 Q115 4 116 11 L118 37 Z"/><use href="#wheels" fill="currentColor"/></symbol>
+    <symbol id="v4" viewBox="0 0 124 48"><path fill="currentColor" d="M2 37 V6 Q2 2 7 2 H112 Q119 2 120 10 L121 37 Z"/><circle cx="22" cy="38" r="7" fill="currentColor"/><circle cx="36" cy="38" r="7" fill="currentColor"/><circle cx="102" cy="38" r="7" fill="currentColor"/></symbol>
+    <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
+    <symbol id="ph" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></symbol>
+  </defs>
+</svg>
+
+<div id="intro" role="dialog" aria-label="Matar Transport">
+  <canvas id="introCanvas"></canvas>
+  <div class="shade"></div>
+  <div class="intro-bar" id="introBar"></div>
+  <button type="button" id="introSkip">דלג</button>
+  <div class="intro-copy">
+    <div class="intro-brand" id="introBrand">מטר הסעות</div>
+    <h2 class="intro-title" id="introTitle"></h2>
+    <button type="button" class="btn btn-gold" id="introEnter">כניסה לאתר</button>
+  </div>
+</div>
+
+<header>
+  <div class="bar">
+    <a class="logo" href="#top"><i></i><span class="gold-text" data-i="brand">מטר הסעות</span></a>
+    <nav>
+      <a href="#fleet" data-i="nav_fleet">הצי</a>
+      <a href="#trips" data-i="nav_trips">נסיעות</a>
+      <a href="#book" data-i="nav_book">הזמנה</a>
+    </nav>
+    <button type="button" class="themebtn" id="themeBtn" aria-pressed="false"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span id="themeLbl">יום</span></button>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="he" aria-pressed="true">עב</button>
+      <button type="button" data-lang="ar" aria-pressed="false">عر</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <div>
+      <div class="eyebrow" data-i="kicker">24/7 · 2–60 מקומות</div>
+      <h1 id="heroTitle"><span class="gold-text">הסעות </span><span class="vip">VIP</span><span class="gold-text"> לכל הארץ</span></h1>
+      <p class="lead" data-i="hero_sub">רכבי VIP חדשים ונוחים, מ־2 ועד 60 מקומות. נהגים מקצועיים וזמינות מלאה, ביום ובלילה.</p>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="#book"><span data-i="cta_book">הזמינו הסעה</span></a>
+        <a class="btn btn-ghost" id="heroWa" href="https://wa.me/972524406710" target="_blank" rel="noopener"><svg><use href="#wa"/></svg><span>WhatsApp</span></a>
+      </div>
+      <div class="phone-line">052-4406710</div>
+    </div>
+
+    <figure class="hero-photo"><img src="img/night.jpg" alt="Black Mercedes Sprinter VIP with its door open at night"><span class="tag">VIP · 24/7</span></figure>
+  </div>
+
+  <div class="strip">
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg><div><b data-i="p1">נהגים מקצועיים</b><span data-i="p1d">אמינות ובטחון</span></div></div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><path d="M12 6.5V12l3.5 2"/></svg><div><b data-i="p2">שירות 24/7</b><span data-i="p2d">זמינות מלאה</span></div></div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3c1.5 0 2.5 1 2.5 2.5V13h7a3 3 0 0 1 3 3v2H8a3 3 0 0 1-3-3V5.5C5 4 5 3 6 3Z"/><path d="M8 21h11"/></svg><div><b data-i="p3">נסיעה נוחה</b><span data-i="p3d">חוויה ברמה אחרת</span></div></div>
+  </div>
+
+  <section id="fleet">
+    <div class="sec-head">
+      <div class="eyebrow" data-i="fleet_kicker">הצי שלנו · 2 עד 60 מקומות</div>
+      <h2 data-i="fleet_title">כמה אתם?</h2>
+      <p data-i="fleet_sub">הזיזו את המחוון ותראו איזה רכב מתאים לקבוצה שלכם.</p>
+    </div>
+    <div class="fleet">
+      <div class="pax-wrap">
+        <div class="pax-num gold-text" id="paxNum">14<small data-i="pax_label">נוסעים</small></div>
+        <div class="pax-side">
+          <div><div class="vname" id="vName">מיניבוס ספרינטר VIP</div><div class="vcap" id="vCap">עד 20 מקומות</div></div>
+          <input type="range" id="paxRange" min="1" max="60" value="14" aria-label="Passengers">
+        </div>
+      </div>
+      <div class="vehicles" id="vehicles"></div>
+      <div>
+        <div class="hull-wrap"><div class="hull"><div class="nose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 3v6.5M4 15l5.6-1.8M20 15l-5.6-1.8"/></svg></div><div class="seats" id="seats"></div></div></div>
+        <p class="seat-note" id="seatNote"></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="trips">
+    <div class="sec-head">
+      <div class="eyebrow" data-i="trips_kicker">כל סוגי העבודות</div>
+      <h2 data-i="trips_title">לאן נוסעים?</h2>
+      <p data-i="trips_sub">בחרו סוג נסיעה ונמלא לכם את ההזמנה.</p>
+    </div>
+    <div class="trips" id="tripCards"></div>
+  </section>
+
+  <section id="packages" style="padding-top:0">
+    <div class="sec-head">
+      <div class="eyebrow" data-i="pk_kicker">חבילות מוכנות</div>
+      <h2 data-i="pk_title">בוחרים חבילה, הטופס מתמלא</h2>
+      <p data-i="pk_sub">כמה נקודות איסוף, הלוך ושוב ושעת חזרה, הכל מוכן מראש.</p>
+    </div>
+    <div class="packs" id="packs"></div>
+  </section>
+
+  <section id="gallery" style="padding-top:0">
+    <div class="gallery">
+      <figure class="tall" id="tourFig"><img loading="lazy" decoding="async" src="img/interior.jpg" alt="Sprinter interior with quilted leather seats and blue ambient lighting"><button type="button" class="tour-btn" id="tourOpen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/></svg><span data-i="tour_cta">סיור בתוך הרכב</span></button><figcaption data-i="cap3">מושבי עור ותאורת אווירה</figcaption></figure>
+      <figure class="wide"><img loading="lazy" decoding="async" src="img/wedding.jpg" alt="Black Sprinter parked at an outdoor wedding venue"><figcaption data-i="cap4">מגיעים לחתונה</figcaption></figure>
+      <figure><img loading="lazy" decoding="async" src="img/van1.jpg" alt="Black Mercedes Sprinter VIP minibus"><figcaption data-i="cap1">ספרינטר VIP בירושלים</figcaption></figure>
+      <figure><img loading="lazy" decoding="async" src="img/van2.jpg" alt="Black Mercedes Sprinter at Fattal Terminal"><figcaption data-i="cap2">בטרמינל פתאל, נתב״ג</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="driver" style="padding-top:0">
+    <div class="driver">
+      <div class="avatar" id="dAvatar"></div>
+      <div>
+        <div class="eyebrow" data-i="drv_kicker">מי מאחורי ההגה</div>
+        <h2 id="dName"></h2>
+        <div class="role" data-i="drv_role">בעל העסק</div>
+        <p id="dText"></p>
+      </div>
+      <a class="btn btn-gold" id="dWa" href="https://wa.me/972524406710" target="_blank" rel="noopener"><svg><use href="#wa"/></svg><span id="dCta"></span></a>
+    </div>
+  </section>
+
+  <section id="stats" hidden style="padding-top:0">
+    <div class="sec-head"><h2 data-i="st_title">במספרים</h2></div>
+    <div class="stats" id="statGrid"></div>
+  </section>
+
+  <section id="reviews" hidden style="padding-top:0">
+    <div class="sec-head"><h2 data-i="rv_title">מה לקוחות כותבים לנו</h2></div>
+    <div class="reviews" id="rvGrid"></div>
+  </section>
+
+  <section id="prices" hidden style="padding-top:0">
+    <div class="sec-head"><h2 data-i="pr_title">מחירים לדוגמה</h2></div>
+    <div class="prices" id="prList"></div>
+    <p class="note" data-i="pr_note">המחיר הסופי לפי מספר נוסעים, שעה ונקודות איסוף.</p>
+  </section>
+
+  <section id="book">
+    <div class="sec-head">
+      <div class="eyebrow" data-i="book_kicker">הזמנה בדקה</div>
+      <h2 data-i="book_title">הכרטיס שלכם מוכן</h2>
+      <p data-i="book_sub">מלאו את הפרטים, הכרטיס מתעדכן, ושולחים לנו בוואטסאפ. אנחנו חוזרים עם הצעת מחיר.</p>
+    </div>
+    <div class="again" id="again" hidden><div><small data-i="again_lbl">ההזמנה הקודמת שלכם</small><b id="againTxt"></b></div><button type="button" class="btn btn-ghost" id="againBtn" data-i="again_btn">להזמין שוב</button></div>
+    <datalist id="places"></datalist>
+    <div class="book">
+      <form id="form" novalidate>
+        <div class="f full"><label for="fType" data-i="f_type">סוג נסיעה</label><select id="fType"></select></div>
+        <div class="seg" role="radiogroup" aria-label="Trip"><input type="radio" name="tripMode" id="modeOne" value="one" checked><label for="modeOne" data-i="one_way">הלוך בלבד</label><input type="radio" name="tripMode" id="modeRound" value="round"><label for="modeRound" data-i="round">הלוך ושוב</label></div>
+        <div class="f"><label for="fFrom" data-i="f_from">מאיפה</label><input id="fFrom" autocomplete="off" list="places"></div>
+        <div class="f"><label for="fTo" data-i="f_to">לאן</label><input id="fTo" autocomplete="off" list="places"></div>
+        <div class="stops"><div id="stops" style="display:grid;gap:10px"></div><button type="button" class="addstop" id="addStop" data-i="add_stop">+ נקודת איסוף נוספת</button></div>
+        <p class="est" id="est" aria-live="polite"></p>
+        <div class="f"><label for="fDate" data-i="f_date">תאריך</label><input id="fDate" type="date"></div>
+        <div class="f"><label for="fTime" data-i="f_time">שעה</label><input id="fTime" type="time" value="05:30"></div>
+        <div class="f ret" hidden><label for="fRetDate" data-i="f_ret_date">תאריך חזרה</label><input id="fRetDate" type="date"></div>
+        <div class="f ret" hidden><label for="fRetTime" data-i="f_ret_time">שעת חזרה</label><input id="fRetTime" type="time" value="22:00"></div>
+        <div class="f"><label for="fPax" data-i="f_pax">מספר נוסעים</label><input id="fPax" type="number" min="1" max="60" value="14" inputmode="numeric"></div>
+        <div class="f"><label for="fName" data-i="f_name">שם</label><input id="fName" autocomplete="name"></div>
+        <div class="f full"><label for="fNote" data-i="f_note">הערות</label><textarea id="fNote"></textarea></div>
+        <details class="group" id="grpBox">
+          <summary data-i="grp_sum">מארגנים קבוצה? ספרו מי מגיע</summary>
+          <div class="grp">
+            <div class="f"><label for="gEvent" data-i="grp_event">על מה ההסעה?</label><input id="gEvent" autocomplete="off"></div>
+            <p class="msg" id="gMsg"></p>
+            <div class="grp-row"><a class="btn btn-ghost" id="gShare" href="https://wa.me/" target="_blank" rel="noopener"><svg><use href="#wa"/></svg><span data-i="grp_share">שיתוף בקבוצת וואטסאפ</span></a><button type="button" class="btn btn-ghost" id="gCopy" data-i="grp_copy">העתקת ההודעה</button></div>
+            <div class="grp-row"><span data-i="grp_count">אישרו הגעה</span><div class="counter"><button type="button" id="gMinus" aria-label="minus">−</button><output id="gNum">0</output><button type="button" id="gPlus" aria-label="plus">+</button></div><button type="button" class="btn btn-gold" id="gUse"></button></div>
+          </div>
+        </details>
+      </form>
+
+      <div>
+        <div class="ticket" aria-live="polite">
+          <div class="tk-main">
+            <div class="tk-top"><span class="brand" data-i="brand">מטר הסעות</span><div class="tk-tags"><span class="lbl" data-i="tk_label">כרטיס עלייה</span><span class="mode" id="tMode">הלוך בלבד</span></div></div>
+            <div class="tk-type" id="tType"></div>
+            <div class="route">
+              <div class="pt"><small data-i="f_from">מאיפה</small><b id="tFrom">—</b></div>
+              <svg id="arrOne" viewBox="0 0 46 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12h38M32 5l8 7-8 7"/></svg><svg id="arrRound" hidden viewBox="0 0 46 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h36M33 2l7 5-7 5M42 17H6M13 12l-7 5 7 5"/></svg>
+              <div class="pt"><small data-i="f_to">לאן</small><b id="tTo">—</b></div>
+            </div>
+            <div class="tk-stops" id="tStops" hidden></div>
+            <div class="tk-grid">
+              <div><small data-i="f_date">תאריך</small><b id="tDate">—</b></div>
+              <div><small data-i="f_time">שעה</small><b id="tTime">—</b></div>
+              <div><small data-i="tk_pax">נוסעים</small><b id="tPax">—</b></div>
+              <div><small data-i="tk_car">רכב</small><b id="tCar">—</b></div>
+            </div>
+            <div class="tk-ret" id="tRet" hidden>
+              <div><small data-i="tk_ret">חזור</small><b id="tRetRoute">—</b></div>
+              <div><small data-i="f_date">תאריך</small><b id="tRetDate">—</b></div>
+              <div><small data-i="f_time">שעה</small><b id="tRetTime">—</b></div>
+            </div>
+          </div>
+          <div class="tk-stub"><div><small style="font-family:var(--board);font-size:.66rem;letter-spacing:.14em;opacity:.6;display:block" data-i="tk_ref">מספר</small><span class="code" id="tCode">MTR-0000</span></div><div class="barcode" aria-hidden="true"></div></div>
+        </div>
+        <div class="send">
+          <a class="btn btn-gold" id="sendWa" href="https://wa.me/972524406710" target="_blank" rel="noopener"><svg><use href="#wa"/></svg><span data-i="send">שליחה בוואטסאפ</span></a>
+          <p class="hint" data-i="hint">ההודעה נפתחת בוואטסאפ מוכנה לשליחה. לא נפתח? התקשרו או כתבו למספר:</p>
+          <div class="copy-row"><code>052-4406710</code><button type="button" id="copyBtn" data-i="copy">העתקה</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="scan" style="padding-top:0">
+    <div class="scan">
+      <div id="qr" aria-label="QR code"></div>
+      <div><h2 data-i="qr_title">סרקו והמשיכו בטלפון</h2><p data-i="qr_sub">הקוד פותח צ׳אט וואטסאפ עם מטר הסעות.</p><div class="social" id="social"></div></div>
+    </div>
+  </section>
+</main>
+
+<dialog id="tour" aria-label="Inside the Sprinter">
+  <button type="button" class="tour-x" id="tourX" aria-label="Close">×</button>
+  <div class="tour-stage"><div class="tour-pan"><img src="img/interior.jpg" alt="">
+    <button type="button" class="hs" data-h="0" style="left:72%;top:62%"></button>
+    <button type="button" class="hs" data-h="1" style="left:24%;top:9%"></button>
+    <button type="button" class="hs" data-h="2" style="left:80%;top:30%"></button>
+    <button type="button" class="hs" data-h="3" style="left:50%;top:23%"></button>
+  </div></div>
+  <p class="tour-cap" id="tourCap"></p>
+</dialog>
+
+<footer class="wrap">
+  <a class="logo" href="#top"><i></i><span class="gold-text" data-i="brand">מטר הסעות</span></a>
+  <span data-i="foot">פתוח 24 שעות, 7 ימים בשבוע</span>
+  <span style="direction:ltr;font-family:var(--board);user-select:all">052-4406710</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const PHONE="972524406710";
+/* ===== Business details: fill these in with REAL info; empty sections stay hidden ===== */
+const CONFIG={
+  driver:{name:{he:"אחסאן מטר",ar:"إحسان مطر",en:"Ihsan Matar"},first:{he:"אחסאן",ar:"إحسان",en:"Ihsan"},photo:""}, // photo: data URI or "" for initials
+  stats:null,      // e.g. {trips:1200,weddings:85,airport:400}
+  reviews:[],      // e.g. [{name:"Rana",text:"Thank you! Everyone arrived on time",date:"Sep 2026"}] — real customer messages only
+  prices:[],       // e.g. [{route:{he:"טירה ← נתב״ג",ar:"...",en:"Tira → Ben Gurion"},from:350}]
+  social:{instagram:"",tiktok:"",facebook:""}
+};
+const PLACES=[["נתב״ג","مطار بن غوريون","Ben Gurion Airport",32.005,34.887],["מעבר נהר הירדן","معبر نهر الأردن","Jordan River Crossing",32.497,35.574],["שדה התעופה רמון","مطار رامون","Ramon Airport",29.724,35.011],["אילת","إيلات","Eilat",29.557,34.952],["ים המלח","البحر الميت","Dead Sea",31.2,35.362],["ירושלים","القدس","Jerusalem",31.778,35.235],["תל אביב","تل أبيب","Tel Aviv",32.085,34.782],["חיפה","حيفا","Haifa",32.794,34.99],["נצרת","الناصرة","Nazareth",32.7,35.303],["טבריה","طبريا","Tiberias",32.795,35.531],["באר שבע","بئر السبع","Beersheba",31.252,34.791],["נתניה","نتانيا","Netanya",32.321,34.853],["כפר סבא","كفار سابا","Kfar Saba",32.175,34.907],["חדרה","الخضيرة","Hadera",32.434,34.919],["אשדוד","أسدود","Ashdod",31.804,34.655],["עכו","عكا","Acre",32.927,35.076],["עפולה","العفولة","Afula",32.608,35.289],["אום אל-פחם","أم الفحم","Umm al-Fahm",32.519,35.153],["סכנין","سخنين","Sakhnin",32.864,35.297],["טייבה","الطيبة","Tayibe",32.266,35.009],["טירה","الطيرة","Tira",32.234,34.95],["כפר קאסם","كفر قاسم","Kafr Qasim",32.114,34.976],["קלנסווה","قلنسوة","Qalansawe",32.285,34.981]];
+const PACKS=[{type:3,round:true,rt:"23:30",pick:3,pax:20},{type:2,round:true,rt:"02:00",pick:3,pax:12},{type:0,round:false,pick:2,pax:6}];
+const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const I={
+he:{dir:"rtl",brand:"מטר הסעות",nav_fleet:"הצי",nav_trips:"נסיעות",nav_book:"הזמנה",kicker:"24/7 · 2–60 מקומות",hero_title:"הסעות VIP לכל הארץ",day:"יום",night:"לילה",skip:"דלג",enter:"כניסה לאתר",hero_sub:"רכבי VIP חדשים ונוחים, מ־2 ועד 60 מקומות. נהגים מקצועיים וזמינות מלאה, ביום ובלילה.",cta_book:"הזמינו הסעה",
+p1:"נהגים מקצועיים",p1d:"אמינות ובטחון",p2:"שירות 24/7",p2d:"זמינות מלאה",p3:"נסיעה נוחה",p3d:"חוויה ברמה אחרת",
+fleet_kicker:"הצי שלנו · 2 עד 60 מקומות",fleet_title:"כמה אתם?",fleet_sub:"הזיזו את המחוון ותראו איזה רכב מתאים לקבוצה שלכם.",pax_label:"נוסעים",
+veh:["רכב מנהלים VIP","ג׳יפ יוקרתי","מיניבוס ספרינטר VIP","מידיבוס","אוטובוס"],vshort:["VIP","ג׳יפ","ספרינטר","מידיבוס","אוטובוס"],cap:"עד {n} מקומות",
+seatNote:"{p} מתוך {c} מושבים תפוסים. {f} מקומות פנויים.",seatFull:"כל {c} המושבים תפוסים.",
+trips_kicker:"כל סוגי העבודות",trips_title:"לאן נוסעים?",trips_sub:"בחרו סוג נסיעה ונמלא לכם את ההזמנה.",pick:"להזמנה ←",
+trips:[["הסעות לנתב״ג","איסוף מהבית בכל שעה, גם באמצע הלילה, עם מקום לכל המזוודות.","נתב״ג"],["הסעות למעבר נהר הירדן","הסעה נוחה עד המעבר לירדן ואיסוף בחזרה, בתיאום מראש לפי שעות המעבר.","מעבר נהר הירדן"],["הסעות למסיבה","כולם מגיעים יחד וחוזרים בבטחה, בלי לחפש נהג תורן.",""],["הסעות לחתונה","הסעת אורחים מהעיר לאולם וחזרה, בזמן ובסטייל.","אולם אירועים"],["הסעות לאילת","נסיעה ארוכה במושבי עור נוחים, עם עצירות לפי הצורך.","אילת"],["טיולים פרטיים","יום טיול בקצב שלכם: אתם בוחרים את המסלול, אנחנו נוהגים ומחכים בכל עצירה.",""],["הסעות","הסעות קבועות לעובדים, תלמידים וקבוצות, בכל יום ולכל מקום.",""],["כל עבודה אחרת","ימי גיבוש, קבוצות ספורט ואירועי חברה. ספרו לנו מה צריך.",""]],
+cap3:"מושבי עור ותאורת אווירה",cap4:"מגיעים לחתונה",one_way:"הלוך בלבד",round:"הלוך ושוב",f_ret_date:"תאריך חזרה",f_ret_time:"שעת חזרה",tk_ret:"חזור",f_mode:"כיוון",ph_note2:"עצירות? מזוודות גדולות? כיסא תינוק?",pk_kicker:"חבילות מוכנות",pk_title:"בוחרים חבילה, הטופס מתמלא",pk_sub:"כמה נקודות איסוף, הלוך ושוב ושעת חזרה, הכל מוכן מראש.",pk_pick:"{n} נקודות איסוף",pk_ret:"חזרה {t}",pk_pax:"{n} נוסעים",pk_cta:"לבחור חבילה ←",
+packs:[["חבילת חתונה","אורחים מעד 3 ערים מגיעים יחד לאולם, וחוזרים הביתה בסוף הערב."],["לילה בחוץ","איסוף מהבתים של החברים, הורדה במקום, וחזרה אחרי חצות."],["משפחה לטיסה","כל המשפחה והמזוודות לנתב״ג, מבית אחד או משניים."]],
+tour_cta:"סיור בתוך הרכב",tour_hint:"געו בנקודות הזהב",hs:["מושבי עור מרופדים בתפר יהלום","תאורת LED כחולה לאורך התקרה","מדפים לתיקים מעל כל שורה","פתחי מיזוג בתקרה"],
+drv_kicker:"מי מאחורי ההגה",drv_role:"בעל העסק",drv_text:"כל הזמנה מגיעה ישירות לוואטסאפ של {n}. שואלים, מתאמים וסוגרים מול אדם אחד.",drv_cta:"כתבו ל{n}",
+st_title:"במספרים",s_trips:"נסיעות",s_weddings:"חתונות",s_airport:"הסעות לשדה",rv_title:"מה לקוחות כותבים לנו",pr_title:"מחירים לדוגמה",pr_from:"החל מ־",pr_note:"המחיר הסופי לפי מספר נוסעים, שעה ונקודות איסוף.",
+qr_title:"סרקו והמשיכו בטלפון",qr_sub:"הקוד פותח צ׳אט וואטסאפ עם מטר הסעות.",
+again_lbl:"ההזמנה הקודמת שלכם",again_btn:"להזמין שוב",add_stop:"+ נקודת איסוף נוספת",stop_lbl:"נקודת איסוף {n}",tk_stops:"+{n} נקודות איסוף",
+est:"≈ {k} ק״מ · בערך {d} (הערכה, בלי פקקים)",dur:["{h} ש׳ {m} דק׳","{m} דק׳"],
+grp_sum:"מארגנים קבוצה? ספרו מי מגיע",grp_event:"על מה ההסעה?",grp_ph:"חתונה, מסיבה, טיול...",grp_msg:"מי מגיע בהסעה ל{e} ב־{d}?\nתגיבו 🙋 ואני סופר/ת.",grp_share:"שיתוף בקבוצת וואטסאפ",grp_copy:"העתקת ההודעה",grp_count:"אישרו הגעה",grp_use:"להשתמש ב־{n} נוסעים",grp_def:"האירוע",
+cap1:"ספרינטר VIP בירושלים",cap2:"בטרמינל פתאל, נתב״ג",
+book_kicker:"הזמנה בדקה",book_title:"הכרטיס שלכם מוכן",book_sub:"מלאו את הפרטים, הכרטיס מתעדכן, ושולחים לנו בוואטסאפ. אנחנו חוזרים עם הצעת מחיר.",
+f_type:"סוג נסיעה",f_from:"מאיפה",f_to:"לאן",f_date:"תאריך",f_time:"שעה",f_pax:"מספר נוסעים",f_name:"שם",f_note:"הערות",
+ph_from:"עיר או כתובת איסוף",ph_to:"יעד",ph_name:"השם שלכם",ph_note:"חזור? עצירות? מזוודות גדולות?",defFrom:"",
+tk_label:"כרטיס עלייה",tk_pax:"נוסעים",tk_car:"רכב",tk_ref:"מספר",send:"שליחה בוואטסאפ",hint:"ההודעה נפתחת בוואטסאפ מוכנה לשליחה. לא נפתח? התקשרו או כתבו למספר:",copy:"העתקה",copied:"הועתק",
+foot:"פתוח 24 שעות, 7 ימים בשבוע",wa_hi:"שלום, אני רוצה להזמין הסעה:"},
+ar:{dir:"rtl",brand:"مطر للسفريات",nav_fleet:"الأسطول",nav_trips:"الرحلات",nav_book:"احجز",kicker:"24/7 · 2–60 مقعدًا",hero_title:"سفريات VIP لكل البلاد",day:"نهار",night:"ليل",skip:"تخطَّ",enter:"ادخلوا إلى الموقع",hero_sub:"مركبات VIP جديدة ومريحة، من مقعدين حتى 60 مقعدًا. سائقون محترفون ومتوفرون ليلًا ونهارًا.",cta_book:"احجز سفرية",
+p1:"سائقون محترفون",p1d:"موثوقية وأمان",p2:"خدمة 24/7",p2d:"متوفرون دائمًا",p3:"رحلة مريحة",p3d:"تجربة بمستوى آخر",
+fleet_kicker:"أسطولنا · من 2 حتى 60 مقعدًا",fleet_title:"كم عددكم؟",fleet_sub:"حرّكوا المؤشر وشاهدوا المركبة المناسبة لمجموعتكم.",pax_label:"ركاب",
+veh:["سيارة VIP تنفيذية","جيب فاخر","ميني باص سبرينتر VIP","ميدي باص","حافلة"],vshort:["VIP","جيب","سبرينتر","ميدي باص","حافلة"],cap:"حتى {n} مقعدًا",
+seatNote:"{p} من أصل {c} مقعدًا محجوزة. {f} مقاعد متاحة.",seatFull:"جميع المقاعد الـ{c} محجوزة.",
+trips_kicker:"كل أنواع المشاوير",trips_title:"إلى أين؟",trips_sub:"اختاروا نوع الرحلة ونعبّئ لكم الحجز.",pick:"احجز ←",
+trips:[["سفريات للمطار","توصيل من البيت في أي ساعة، حتى منتصف الليل، مع مكان لكل الحقائب.","مطار بن غوريون"],["سفريات لمعبر نهر الأردن","توصيل مريح حتى المعبر إلى الأردن والاستقبال عند العودة، بالتنسيق المسبق حسب ساعات المعبر.","معبر نهر الأردن"],["سفريات للحفلات","الجميع يصل معًا ويعود بأمان، بلا حاجة لسائق مناوب.",""],["سفريات للأعراس","نقل الضيوف من البلد إلى القاعة والعودة، في الموعد وبأناقة.","قاعة الأفراح"],["سفريات لإيلات","رحلة طويلة على مقاعد جلدية مريحة، مع توقفات حسب الحاجة.","إيلات"],["رحلات خاصة","يوم رحلة على راحتكم: أنتم تختارون المسار، ونحن نقود وننتظر عند كل توقف.",""],["سفريات","سفريات ثابتة للعمال والطلاب والمجموعات، كل يوم وإلى أي مكان.",""],["أي مشوار آخر","أيام ترفيه، فرق رياضية ومناسبات شركات. أخبرونا بما تحتاجون.",""]],
+cap3:"مقاعد جلدية وإضاءة أجواء",cap4:"وصلنا إلى العرس",one_way:"ذهاب فقط",round:"ذهاب وعودة",f_ret_date:"تاريخ العودة",f_ret_time:"ساعة العودة",tk_ret:"العودة",f_mode:"الاتجاه",ph_note2:"توقفات؟ حقائب كبيرة؟ كرسي أطفال؟",pk_kicker:"باقات جاهزة",pk_title:"اختاروا باقة ويتعبّأ النموذج",pk_sub:"عدة نقاط استلام، ذهاب وعودة وساعة العودة، كل شيء جاهز مسبقًا.",pk_pick:"{n} نقاط استلام",pk_ret:"عودة {t}",pk_pax:"{n} ركاب",pk_cta:"اختيار الباقة ←",
+packs:[["باقة العرس","ضيوف من حتى 3 بلدات يصلون معًا إلى القاعة، ويعودون إلى البيت في نهاية السهرة."],["سهرة برّا","استلام من بيوت الأصدقاء، توصيل إلى المكان، وعودة بعد منتصف الليل."],["عائلة إلى الطائرة","كل العائلة والحقائب إلى المطار، من بيت واحد أو بيتين."]],
+tour_cta:"جولة داخل المركبة",tour_hint:"المسوا النقاط الذهبية",hs:["مقاعد جلدية بتطريز معيّن","إضاءة LED زرقاء على طول السقف","رفوف للحقائب فوق كل صف","فتحات تكييف في السقف"],
+drv_kicker:"من خلف المقود",drv_role:"صاحب المصلحة",drv_text:"كل حجز يصل مباشرة إلى واتساب {n}. تسألون وتنسّقون وتتفقون مع شخص واحد.",drv_cta:"راسلوا {n}",
+st_title:"بالأرقام",s_trips:"رحلات",s_weddings:"أعراس",s_airport:"سفريات للمطار",rv_title:"ماذا يكتب لنا الزبائن",pr_title:"أسعار تقريبية",pr_from:"ابتداءً من ",pr_note:"السعر النهائي حسب عدد الركاب والساعة ونقاط الاستلام.",
+qr_title:"امسحوا وتابعوا من الهاتف",qr_sub:"الرمز يفتح محادثة واتساب مع مطر للسفريات.",
+again_lbl:"حجزكم السابق",again_btn:"احجز مرة أخرى",add_stop:"+ نقطة استلام أخرى",stop_lbl:"نقطة استلام {n}",tk_stops:"+{n} نقاط استلام",
+est:"≈ {k} كم · حوالي {d} (تقدير، بدون ازدحام)",dur:["{h} س {m} د","{m} د"],
+grp_sum:"تنظّمون مجموعة؟ احسبوا من سيأتي",grp_event:"لأي مناسبة السفرية؟",grp_ph:"عرس، حفلة، رحلة...",grp_msg:"مين جاي بالسفرية على {e} يوم {d}؟\nردّوا 🙋 وأنا بعدّ.",grp_share:"مشاركة في مجموعة واتساب",grp_copy:"نسخ الرسالة",grp_count:"أكّدوا الحضور",grp_use:"استخدام {n} ركاب",grp_def:"المناسبة",
+cap1:"سبرينتر VIP في القدس",cap2:"عند مبنى فتال، مطار بن غوريون",
+book_kicker:"حجز في دقيقة",book_title:"بطاقتكم جاهزة",book_sub:"املؤوا التفاصيل، تتحدث البطاقة، وأرسلوها لنا عبر واتساب. نعود إليكم بعرض سعر.",
+f_type:"نوع الرحلة",f_from:"من",f_to:"إلى",f_date:"التاريخ",f_time:"الساعة",f_pax:"عدد الركاب",f_name:"الاسم",f_note:"ملاحظات",
+ph_from:"البلد أو عنوان الاستلام",ph_to:"الوجهة",ph_name:"اسمكم",ph_note:"عودة؟ توقفات؟ حقائب كبيرة؟",defFrom:"",
+tk_label:"بطاقة صعود",tk_pax:"ركاب",tk_car:"المركبة",tk_ref:"رقم",send:"إرسال عبر واتساب",hint:"تُفتح الرسالة في واتساب جاهزة للإرسال. لم تُفتح؟ اتصلوا أو راسلوا الرقم:",copy:"نسخ",copied:"تم النسخ",
+foot:"مفتوح 24 ساعة، 7 أيام في الأسبوع",wa_hi:"مرحبًا، أريد حجز سفرية:"},
+en:{dir:"ltr",brand:"Matar Transport",nav_fleet:"Fleet",nav_trips:"Trips",nav_book:"Book",kicker:"24/7 · 2–60 seats",hero_title:"VIP transport all over the country",day:"Day",night:"Night",skip:"Skip",enter:"Enter site",hero_sub:"New, comfortable VIP vehicles from 2 to 60 seats. Professional drivers, available day and night.",cta_book:"Book a ride",
+p1:"Professional drivers",p1d:"Reliable and safe",p2:"24/7 service",p2d:"Always available",p3:"Comfortable ride",p3d:"A different level",
+fleet_kicker:"Our fleet · 2 to 60 seats",fleet_title:"How many of you?",fleet_sub:"Drag the slider to see which vehicle fits your group.",pax_label:"passengers",
+veh:["VIP executive car","Luxury SUV","Sprinter VIP minibus","Midibus","Coach"],vshort:["VIP","SUV","Sprinter","Midibus","Coach"],cap:"Up to {n} seats",
+seatNote:"{p} of {c} seats taken. {f} seats free.",seatFull:"All {c} seats taken.",
+trips_kicker:"Every kind of job",trips_title:"Where to?",trips_sub:"Pick a trip type and we'll fill in the booking for you.",pick:"Book this →",
+trips:[["Airport rides","Pickup from home at any hour, even mid-night, with room for every suitcase.","Ben Gurion Airport"],["Jordan River Crossing","A comfortable ride to the crossing into Jordan and pickup on your way back, arranged ahead around crossing hours.","Jordan River Crossing"],["Party rides","Everyone arrives together and gets home safe. Nobody has to stay sober to drive.",""],["Wedding shuttles","Guests from town to the venue and back, on time and in style.","Wedding venue"],["Eilat trips","The long drive on comfortable leather seats, with stops whenever you need.","Eilat"],["Private tours","A day out at your pace. You pick the route, we drive and wait at every stop.",""],["Shuttles","Regular shuttles for workers, students and groups, every day, anywhere.",""],["Any other job","Team days, sports teams and company events. Tell us what you need.",""]],
+cap3:"Leather seats and mood lighting",cap4:"Arriving at a wedding",one_way:"One way",round:"Round trip",f_ret_date:"Return date",f_ret_time:"Return time",tk_ret:"Return",f_mode:"Trip",ph_note2:"Stops? Large luggage? Child seat?",pk_kicker:"Ready-made packages",pk_title:"Pick a package, the form fills itself",pk_sub:"Several pickups, round trip and a return time, all set up for you.",pk_pick:"{n} pickups",pk_ret:"Return {t}",pk_pax:"{n} passengers",pk_cta:"Use this package →",
+packs:[["Wedding package","Guests from up to 3 towns arrive at the hall together and get home at the end of the night."],["Night out","Pickups from friends' homes, drop-off at the venue, and a ride back after midnight."],["Family to the airport","The whole family and the luggage to Ben Gurion, from one home or two."]],
+tour_cta:"Look inside",tour_hint:"Tap the gold dots",hs:["Diamond-stitched leather seats","Blue LED lighting along the ceiling","Bag racks above every row","Ceiling air-conditioning vents"],
+drv_kicker:"Behind the wheel",drv_role:"Owner",drv_text:"Every booking goes straight to {n}'s WhatsApp. You ask, plan and confirm with one person.",drv_cta:"Message {n}",
+st_title:"By the numbers",s_trips:"Trips",s_weddings:"Weddings",s_airport:"Airport runs",rv_title:"What customers write to us",pr_title:"Starting prices",pr_from:"from ",pr_note:"Final price depends on passengers, time and pickups.",
+qr_title:"Scan and continue on your phone",qr_sub:"The code opens a WhatsApp chat with Matar Transport.",
+again_lbl:"Your last booking",again_btn:"Book again",add_stop:"+ Add another pickup",stop_lbl:"Pickup {n}",tk_stops:"+{n} pickups",
+est:"≈ {k} km · about {d} (estimate, without traffic)",dur:["{h}h {m}m","{m} min"],
+grp_sum:"Organizing a group? Count who's coming",grp_event:"What's the ride for?",grp_ph:"Wedding, party, trip...",grp_msg:"Who's taking the shuttle to {e} on {d}?\nReply 🙋 and I'll count you in.",grp_share:"Share to a WhatsApp group",grp_copy:"Copy message",grp_count:"Confirmed",grp_use:"Use {n} passengers",grp_def:"the event",
+cap1:"Sprinter VIP in Jerusalem",cap2:"At Fattal Terminal, Ben Gurion",
+book_kicker:"Book in a minute",book_title:"Your ticket is ready",book_sub:"Fill in the details, watch the ticket update, and send it on WhatsApp. We reply with a price.",
+f_type:"Trip type",f_from:"From",f_to:"To",f_date:"Date",f_time:"Time",f_pax:"Passengers",f_name:"Name",f_note:"Notes",
+ph_from:"Town or pickup address",ph_to:"Destination",ph_name:"Your name",ph_note:"Return trip? Stops? Large luggage?",defFrom:"",
+tk_label:"Boarding pass",tk_pax:"Pax",tk_car:"Vehicle",tk_ref:"Ref",send:"Send on WhatsApp",hint:"The message opens in WhatsApp ready to send. Didn't open? Call or message:",copy:"Copy",copied:"Copied",
+foot:"Open 24 hours, 7 days a week",wa_hi:"Hi, I'd like to book a ride:"}
+};
+const CAPS=[2,6,20,30,60];
+const $=s=>document.querySelector(s);
+let L="he",pax=14,type=0,round=false;
+try{const s=localStorage.getItem("matar-lang");if(I[s])L=s}catch(e){}
+let grpN=0;
+
+const pickV=p=>CAPS.findIndex(c=>p<=c);
+const tpl=(s,o)=>s.replace(/\{(\w)\}/g,(_,k)=>o[k]);
+
+/* vehicles row */
+$("#vehicles").innerHTML=CAPS.map((c,i)=>`<button type="button" class="veh" data-v="${i}" aria-pressed="false"><svg><use href="#v${i}"/></svg><span class="vl"></span><b>${c}</b></button>`).join("");
+$("#vehicles").addEventListener("click",e=>{const b=e.target.closest(".veh");if(b)setPax(CAPS[+b.dataset.v])});
+
+function setPax(p){
+  pax=Math.max(1,Math.min(60,Math.round(+p)||1));
+  $("#paxRange").value=pax; if(document.activeElement!==$("#fPax"))$("#fPax").value=pax;
+  renderFleet(); renderTicket();
+}
+function renderFleet(){
+  const t=I[L],v=pickV(pax),cap=CAPS[v];
+  $("#paxNum").firstChild.nodeValue=pax;
+  $("#vName").textContent=t.veh[v]; $("#vCap").textContent=tpl(t.cap,{n:cap});
+  document.querySelectorAll(".veh").forEach((b,i)=>{b.setAttribute("aria-pressed",i===v);b.querySelector(".vl").textContent=t.vshort[i]});
+  const seats=$("#seats");
+  if(seats.childElementCount!==cap){
+    let h="";for(let i=0;i<cap;i++){const col=Math.floor(i/4)+1,lane=i%4,row=lane<2?lane+1:lane+2;h+=`<i class="seat" style="grid-column:${col};grid-row:${row}"></i>`}
+    seats.innerHTML=h;
+  }
+  [...seats.children].forEach((s,i)=>s.classList.toggle("on",i<pax));
+  $("#seatNote").textContent=pax>=cap?tpl(t.seatFull,{c:cap}):tpl(t.seatNote,{p:pax,c:cap,f:cap-pax});
+}
+$("#paxRange").addEventListener("input",e=>setPax(e.target.value));
+$("#fPax").addEventListener("input",e=>{if(e.target.value)setPax(e.target.value)});
+
+/* trip cards */
+const tripIcons=[
+'<path d="M2.5 19h19M10 14 4 9.5l1.5-1 5 2L15 6c1.2-1.2 3-1.5 3.8-.7.8.8.5 2.6-.7 3.8l-4.4 4.5 2 5-1 1.5L10 14Z"/>',
+'<path d="M2 13h20M4 13V8M20 13V8M4 8c3 3.2 13 3.2 16 0M8 10.6V13M12 11.2V13M16 10.6V13"/><path d="M2 18c2 1.3 3.3 1.3 5 0s3.3-1.3 5 0 3.3 1.3 5 0 3.3-1.3 5 0"/>',
+'<path d="M8 21h8M12 15v6M5 3h14l-7 12L5 3Z"/><path d="M7.5 7h9"/>',
+'<circle cx="8.5" cy="14" r="5.5"/><circle cx="15.5" cy="14" r="5.5"/><path d="m10 5 2-2.5L14 5"/>',
+'<path d="M12 21V10M12 10c-3-3-7-2.5-8 0 3-1 5.5 0 8 0Zm0 0c3-3 7-2.5 8 0-3-1-5.5 0-8 0Zm0 0c-1-3.5 1-6.5 4-7-2 1.5-3 4-4 7Zm0 0c1-3.5-1-6.5-4-7 2 1.5 3 4 4 7Z"/><path d="M3 21h18"/>',
+'<circle cx="12" cy="12" r="9.5"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/>',
+'<path d="M3 17V7a2 2 0 0 1 2-2h11l5 5v7"/><circle cx="7.5" cy="17.5" r="2"/><circle cx="16.5" cy="17.5" r="2"/><path d="M9.5 17.5h5M3 11h18"/>',
+'<circle cx="12" cy="12" r="9.5"/><path d="M12 7.5v9M7.5 12h9"/>'
+];
+function renderTrips(){
+  const t=I[L];
+  $("#tripCards").innerHTML=t.trips.map((x,i)=>`<button type="button" class="trip" data-t="${i}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${tripIcons[i]}</svg><h3>${x[0]}</h3><p>${x[1]}</p><span class="go">${t.pick}</span></button>`).join("");
+  $("#fType").innerHTML=t.trips.map((x,i)=>`<option value="${i}">${x[0]}</option>`).join("");
+  $("#fType").value=type;
+}
+$("#tripCards").addEventListener("click",e=>{const b=e.target.closest(".trip");if(!b)return;setType(+b.dataset.t,true);$("#book").scrollIntoView();});
+$("#fType").addEventListener("change",e=>setType(+e.target.value,false));
+function setType(i,fromCard){
+  const cur=$("#fTo").value.trim(),auto=!cur||I[L].trips.some(x=>x[2]&&x[2]===cur);
+  type=i;$("#fType").value=i;const d=I[L].trips[i][2];
+  if(d||fromCard||auto)$("#fTo").value=d;
+  renderTicket();
+}
+
+/* ticket + whatsapp */
+function dmy(v){if(!v)return"—";const [y,m,d]=v.split("-");return`${d}.${m}.${y}`}
+function setPop(el,v){if(el.textContent===v)return;el.textContent=v;el.classList.remove("pop");void el.offsetWidth;el.classList.add("pop")}
+function renderTicket(){
+  const t=I[L],v=pickV(pax);
+  const from=$("#fFrom").value.trim(),to=$("#fTo").value.trim(),date=$("#fDate").value,time=$("#fTime").value,rdate=$("#fRetDate").value,rtime=$("#fRetTime").value,name=$("#fName").value.trim(),note=$("#fNote").value.trim();
+  const stops=stopVals(),arrow=t.dir==="rtl"?" ← ":" → ";
+  setPop($("#tFrom"),from||"—");setPop($("#tTo"),to||"—");
+  const tt=$("#tType"),tl=t.trips[type][0];if(tt.dataset.v!==L+type){tt.dataset.v=L+type;tt.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${tripIcons[type]}</svg><span></span>`;tt.querySelector("span").textContent=tl;tt.classList.remove("pop");void tt.offsetWidth;tt.classList.add("pop")}$("#tDate").textContent=dmy(date);$("#tTime").textContent=time||"—";$("#tPax").textContent=pax;$("#tCar").textContent=t.vshort[v];
+  $("#tMode").textContent=round?t.round:t.one_way;$("#tMode").classList.toggle("round",round);
+  $("#arrOne").toggleAttribute("hidden",round);$("#arrRound").toggleAttribute("hidden",!round);$("#tRet").hidden=!round;
+  $("#tRetRoute").textContent=(to||"—")+arrow+(from||"—");$("#tRetDate").textContent=dmy(rdate);$("#tRetTime").textContent=rtime||"—";
+  $("#tCode").textContent="MTR-"+(date?date.slice(5).replace("-",""):"0000")+"-"+String(pax).padStart(2,"0")+(round?"-R":"");
+  const e=estimate([from,...stops,to]);
+  $("#est").textContent=e?tpl(t.est,{k:e.km,d:e.d}):"";
+  const bits=[];if(stops.length)bits.push(tpl(t.tk_stops,{n:stops.length}));if(e)bits.push("≈ "+e.d);
+  $("#tStops").textContent=bits.join(" · ");$("#tStops").hidden=!bits.length;
+  const lines=[t.wa_hi,"",`${t.f_type}: ${t.trips[type][0]}`,`${t.f_mode}: ${round?t.round:t.one_way}`,`${t.f_from}: ${from||"—"}`];
+  stops.forEach((x,i)=>lines.push(`${tpl(t.stop_lbl,{n:i+2})}: ${x}`));
+  lines.push(`${t.f_to}: ${to||"—"}`,`${t.f_date}: ${dmy(date)}`,`${t.f_time}: ${time||"—"}`);
+  if(round)lines.push(`${t.f_ret_date}: ${dmy(rdate)}`,`${t.f_ret_time}: ${rtime||"—"}`);
+  lines.push(`${t.f_pax}: ${pax} (${t.veh[v]})`);
+  if(name)lines.push(`${t.f_name}: ${name}`); if(note)lines.push(`${t.f_note}: ${note}`);
+  $("#sendWa").href=`https://wa.me/${PHONE}?text=${encodeURIComponent(lines.join("\n"))}`;
+  renderGroup();
+}
+["#fFrom","#fTo","#fTime","#fRetDate","#fRetTime","#fName","#fNote"].forEach(s=>["input","change"].forEach(ev=>$(s).addEventListener(ev,renderTicket)));
+["input","change"].forEach(ev=>$("#fDate").addEventListener(ev,()=>{const d=$("#fDate").value;$("#fRetDate").min=d;if(d&&$("#fRetDate").value<d)$("#fRetDate").value=d;renderTicket()}));
+document.querySelectorAll('[name="tripMode"]').forEach(r=>r.addEventListener("change",()=>{setRound($("#modeRound").checked);renderTicket()}));
+$("#form").addEventListener("submit",e=>e.preventDefault());
+
+$("#copyBtn").addEventListener("click",e=>{
+  const b=e.currentTarget,done=()=>{b.textContent=I[L].copied;setTimeout(()=>b.textContent=I[L].copy,1600)};
+  try{navigator.clipboard.writeText("0524406710").then(done,()=>{selectNum();});}catch(err){selectNum()}
+  function selectNum(){const r=document.createRange();r.selectNodeContents(b.previousElementSibling);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+});
+
+/* places + estimate */
+const norm=x=>(x||"").toLowerCase().replace(/[״"'׳`\s\-]/g,"");
+function findPlace(x){const n=norm(x);if(n.length<2)return null;return PLACES.find(p=>p.slice(0,3).some(a=>norm(a)===n))||PLACES.find(p=>p.slice(0,3).some(a=>norm(a).length>=3&&n.includes(norm(a))))||null}
+function estimate(names){
+  const pts=names.filter(Boolean).map(findPlace);if(pts.length<2||pts.some(p=>!p))return null;
+  let km=0;for(let i=1;i<pts.length;i++){const[a,b]=[pts[i-1],pts[i]],R=6371,r=Math.PI/180,dl=(b[3]-a[3])*r,dg=(b[4]-a[4])*r,h=Math.sin(dl/2)**2+Math.cos(a[3]*r)*Math.cos(b[3]*r)*Math.sin(dg/2)**2;km+=2*R*Math.asin(Math.sqrt(h))*1.25}
+  if(km<1)return null;
+  const min=Math.max(10,Math.round(km/(km<30?40:72)*60/5)*5),h=Math.floor(min/60),m=min%60,t=I[L];
+  return{km:Math.round(km/5)*5||Math.round(km),d:h?tpl(t.dur[0],{h,m}):tpl(t.dur[1],{m})};
+}
+function renderPlaces(){const li=L==="he"?0:L==="ar"?1:2;$("#places").innerHTML=PLACES.map(p=>`<option value="${p[li]}"></option>`).join("")}
+
+/* extra pickup stops */
+const stopVals=()=>[...document.querySelectorAll("#stops input")].map(i=>i.value.trim()).filter(Boolean);
+function addStop(val=""){
+  const box=$("#stops");if(box.children.length>=4)return;
+  const n=box.children.length+2,id="stop"+Date.now()+n,w=document.createElement("div");w.className="stop";
+  w.innerHTML=`<div class="f"><label for="${id}"></label><input id="${id}" list="places" autocomplete="off"></div><button type="button" aria-label="remove">×</button>`;
+  w.querySelector("input").value=val;["input","change"].forEach(ev=>w.querySelector("input").addEventListener(ev,renderTicket));
+  w.querySelector("button").addEventListener("click",()=>{w.remove();labelStops();renderTicket()});
+  box.appendChild(w);labelStops();
+}
+function labelStops(){const t=I[L];[...$("#stops").children].forEach((w,i)=>w.querySelector("label").textContent=tpl(t.stop_lbl,{n:i+2}));$("#addStop").hidden=$("#stops").children.length>=4}
+$("#addStop").addEventListener("click",()=>{addStop();$("#stops").lastElementChild.querySelector("input").focus();renderTicket()});
+
+/* round trip helper */
+function setRound(r){round=r;$("#modeRound").checked=r;$("#modeOne").checked=!r;document.querySelectorAll(".f.ret").forEach(f=>f.hidden=!r);if(r&&!$("#fRetDate").value)$("#fRetDate").value=$("#fDate").value}
+
+/* packages */
+function renderPacks(){
+  const t=I[L];
+  $("#packs").innerHTML=PACKS.map((p,i)=>{
+    const dots=Array.from({length:p.pick},()=>"<i></i><b></b>").join("");
+    const chips=[tpl(t.pk_pick,{n:p.pick}),p.round?tpl(t.pk_ret,{t:p.rt}):t.one_way,tpl(t.pk_pax,{n:p.pax})].map(c=>`<span class="chip">${c}</span>`).join("");
+    return `<button type="button" class="pack" data-p="${i}"><div class="pline">${dots}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 21V4M5 4h12l-2 4 2 4H5"/></svg></div><h3>${t.packs[i][0]}</h3><p>${t.packs[i][1]}</p><div class="chips">${chips}</div><span class="go">${t.pk_cta}</span></button>`}).join("");
+}
+$("#packs").addEventListener("click",e=>{
+  const b=e.target.closest(".pack");if(!b)return;const p=PACKS[+b.dataset.p];
+  setType(p.type,true);setRound(p.round);if(p.round)$("#fRetTime").value=p.rt;
+  $("#stops").innerHTML="";for(let i=1;i<p.pick;i++)addStop();
+  setPax(p.pax);$("#book").scrollIntoView();
+});
+
+/* group headcount */
+function renderGroup(){
+  const t=I[L],ev=$("#gEvent").value.trim()||t.grp_def,msg=tpl(t.grp_msg,{e:ev,d:dmy($("#fDate").value)});
+  $("#gMsg").textContent=msg;$("#gShare").href="https://wa.me/?text="+encodeURIComponent(msg);
+  $("#gNum").value=grpN;$("#gNum").textContent=grpN;$("#gUse").textContent=tpl(t.grp_use,{n:Math.max(1,grpN)});$("#gUse").disabled=!grpN;
+}
+$("#gEvent").placeholder="";$("#gEvent").addEventListener("input",renderGroup);
+$("#gPlus").addEventListener("click",()=>{grpN=Math.min(60,grpN+1);renderGroup()});
+$("#gMinus").addEventListener("click",()=>{grpN=Math.max(0,grpN-1);renderGroup()});
+$("#gUse").addEventListener("click",()=>{if(grpN)setPax(grpN)});
+$("#gCopy").addEventListener("click",e=>{const b=e.currentTarget,txt=$("#gMsg").textContent;
+  try{navigator.clipboard.writeText(txt).then(()=>{b.textContent=I[L].copied;setTimeout(()=>b.textContent=I[L].grp_copy,1600)},sel)}catch(err){sel()}
+  function sel(){const r=document.createRange();r.selectNodeContents($("#gMsg"));const s=getSelection();s.removeAllRanges();s.addRange(r)}});
+
+/* book again (remembered on this phone only) */
+$("#sendWa").addEventListener("click",()=>store.set("matar-last",{type,round,from:$("#fFrom").value,to:$("#fTo").value,stops:stopVals(),time:$("#fTime").value,rtime:$("#fRetTime").value,pax,name:$("#fName").value,note:$("#fNote").value}));
+function renderAgain(){
+  const l=store.get("matar-last");if(!l||!(l.from||l.to)){$("#again").hidden=true;return}
+  const t=I[L];$("#againTxt").textContent=`${l.from||"—"}${t.dir==="rtl"?" ← ":" → "}${l.to||"—"} · ${l.pax} ${t.tk_pax}`;$("#again").hidden=false;
+}
+$("#againBtn").addEventListener("click",()=>{
+  const l=store.get("matar-last");if(!l)return;
+  type=l.type||0;$("#fType").value=type;setRound(!!l.round);
+  $("#fFrom").value=l.from||"";$("#fTo").value=l.to||"";$("#fTime").value=l.time||"";$("#fRetTime").value=l.rtime||"";$("#fName").value=l.name||"";$("#fNote").value=l.note||"";
+  $("#stops").innerHTML="";(l.stops||[]).forEach(x=>addStop(x));setPax(l.pax||1);
+});
+
+/* day / night */
+function setTheme(day){document.body.classList.toggle("day",day);$("#themeBtn").setAttribute("aria-pressed",day);const t=I[L];$("#themeLbl").textContent=day?t.night:t.day;$("#themeBtn").setAttribute("aria-label",day?t.night:t.day);store.set("matar-theme",day?"day":"night")}
+$("#themeBtn").addEventListener("click",()=>setTheme(!document.body.classList.contains("day")));
+
+/* interior tour */
+const tour=$("#tour");
+function openTour(){try{tour.showModal()}catch(e){tour.setAttribute("open","")}$("#tourCap").textContent=I[L].tour_hint;document.querySelectorAll(".hs").forEach(h=>h.setAttribute("aria-pressed","false"))}
+$("#tourOpen").addEventListener("click",e=>{e.stopPropagation();openTour()});
+$("#tourFig").addEventListener("click",openTour);
+$("#tourX").addEventListener("click",()=>tour.close?tour.close():tour.removeAttribute("open"));
+tour.addEventListener("click",e=>{if(e.target===tour)tour.close()});
+document.querySelectorAll(".hs").forEach(h=>h.addEventListener("click",()=>{document.querySelectorAll(".hs").forEach(x=>x.setAttribute("aria-pressed",x===h));$("#tourCap").textContent=I[L].hs[+h.dataset.h]}));
+
+/* driver + proof sections */
+function renderDriver(){
+  const t=I[L],d=CONFIG.driver,nm=d.name[L],fn=d.first[L];
+  $("#dName").textContent=nm;$("#dText").textContent=tpl(t.drv_text,{n:fn});$("#dCta").textContent=tpl(t.drv_cta,{n:fn});
+  const av=$("#dAvatar");if(d.photo){av.innerHTML=`<img src="${d.photo}" alt="">`}else{av.textContent=nm.split(/\s+/).map(w=>w[0]).join("").slice(0,2)}
+  document.querySelectorAll(".hs").forEach((h,i)=>h.setAttribute("aria-label",t.hs[i]));
+}
+function renderProof(){
+  const t=I[L],st=CONFIG.stats;
+  $("#stats").hidden=!st;if(st)$("#statGrid").innerHTML=[["trips","s_trips"],["weddings","s_weddings"],["airport","s_airport"]].filter(([k])=>st[k]).map(([k,l])=>`<div class="stat"><b class="gold-text">${Number(st[k]).toLocaleString()}+</b><span>${t[l]}</span></div>`).join("");
+  const rv=CONFIG.reviews;$("#reviews").hidden=!rv.length;
+  $("#rvGrid").innerHTML="";rv.forEach(r=>{const b=document.createElement("div");b.className="bubble";b.innerHTML="<p></p><small><span></span><span></span></small>";b.querySelector("p").textContent=r.text;b.querySelectorAll("small span")[0].textContent=r.name||"";b.querySelectorAll("small span")[1].textContent=r.date||"";$("#rvGrid").appendChild(b)});
+  const pr=CONFIG.prices;$("#prices").hidden=!pr.length;
+  $("#prList").innerHTML="";pr.forEach(p=>{const r=document.createElement("div");r.innerHTML="<span></span><b></b>";r.querySelector("span").textContent=p.route[L]||p.route.en;r.querySelector("b").textContent=t.pr_from+"₪"+p.from;$("#prList").appendChild(r)});
+  const so=CONFIG.social;$("#social").innerHTML="";[["instagram","Instagram"],["tiktok","TikTok"],["facebook","Facebook"]].forEach(([k,l])=>{if(so[k]){const a=document.createElement("a");a.href=so[k];a.target="_blank";a.rel="noopener";a.textContent=l;$("#social").appendChild(a)}});
+}
+
+/* QR to WhatsApp chat */
+function renderQR(){
+  const el=$("#qr");if(typeof QRCode==="undefined"){$("#scan").hidden=true;return}
+  el.innerHTML="";new QRCode(el,{text:`https://wa.me/${PHONE}?text=${encodeURIComponent(I[L].wa_hi)}`,width:300,height:300,colorDark:"#1c160c",colorLight:"#f3e6c4",correctLevel:QRCode.CorrectLevel.M});
+}
+
+/* language */
+function applyLang(l){
+  const prevDefFrom=I[L].defFrom,prevTo=I[L].trips[type][2];L=l;const t=I[l];
+  document.documentElement.lang=l;document.documentElement.dir=t.dir;
+  document.querySelectorAll("[data-i]").forEach(el=>{const v=t[el.dataset.i];if(typeof v==="string")el.textContent=v});
+  document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l));
+  $("#fFrom").placeholder=t.ph_from;$("#fTo").placeholder=t.ph_to;$("#fName").placeholder=t.ph_name;$("#fNote").placeholder=t.ph_note2;
+  if(!$("#fFrom").value||$("#fFrom").value===prevDefFrom)$("#fFrom").value=t.defFrom;
+  if(!$("#fTo").value||$("#fTo").value===prevTo)$("#fTo").value=t.trips[type][2];
+  document.title=t.brand;
+  const h=$("#heroTitle");h.textContent="";t.hero_title.split(/(VIP)/).filter(Boolean).forEach(p=>{const sp=document.createElement("span");sp.className=p==="VIP"?"vip":"gold-text";sp.textContent=p;h.appendChild(sp)});
+  const li=l==="he"?0:l==="ar"?1:2;["#fFrom","#fTo",...[...document.querySelectorAll("#stops input")].map(i=>"#"+i.id)].forEach(sel=>{const el=$(sel),p=findPlace(el.value);if(p&&el.value.trim())el.value=p[li]});
+  setTheme(document.body.classList.contains("day"));
+  $("#gEvent").placeholder=t.grp_ph;renderTrips();renderPacks();renderPlaces();labelStops();renderDriver();renderProof();renderAgain();renderQR();renderFleet();renderTicket();
+  try{localStorage.setItem("matar-lang",l)}catch(e){}
+}
+document.querySelector(".langs").addEventListener("click",e=>{const b=e.target.closest("[data-lang]");if(b)applyLang(b.dataset.lang)});
+
+const ymd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;$("#fDate").value=ymd(new Date(Date.now()+864e5));$("#fDate").min=ymd(new Date());$("#fRetDate").value=$("#fDate").value;$("#fRetDate").min=$("#fDate").value;
+if(store.get("matar-theme")==="day")document.body.classList.add("day");
+applyLang(L);
+
+/* ===== intro: 3D Sprinter arrives, door slides open ===== */
+(function(){
+  const el=$("#intro");if(!el)return;
+  let stop=null,ended=false;
+  const html=document.documentElement;
+  const end=()=>{if(ended)return;ended=true;el.classList.add("out");html.style.overflow="";setTimeout(()=>{if(stop)stop();el.remove()},850)};
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches||typeof THREE==="undefined"){el.remove();return}
+  let R;
+  try{R=new THREE.WebGLRenderer({canvas:$("#introCanvas"),antialias:true,powerPreference:"high-performance"})}catch(e){el.remove();return}
+  html.style.overflow="hidden";
+  const t=I[L];
+  $("#introBrand").textContent=t.brand;$("#introSkip").textContent=t.skip;$("#introEnter").textContent=t.enter;
+  const it=$("#introTitle");t.hero_title.split(/(VIP)/).filter(Boolean).forEach(p=>{const sp=document.createElement("span");sp.className=p==="VIP"?"vip":"gold-text";sp.textContent=p;it.appendChild(sp)});
+  $("#introSkip").addEventListener("click",end);$("#introEnter").addEventListener("click",end);
+  addEventListener("keydown",e=>{if(e.key==="Escape"||e.key==="Enter")end()},{once:true});
+
+  R.setPixelRatio(Math.min(devicePixelRatio||1,2));
+  R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.05;
+  const S=new THREE.Scene();S.background=new THREE.Color(0x050817);S.fog=new THREE.Fog(0x050817,20,75);
+  const cam=new THREE.PerspectiveCamera(40,1,.1,250);
+  let wide=false;
+  function size(){const w=el.clientWidth,h=el.clientHeight,a=w/h;wide=a>1.1;R.setSize(w,h,false);cam.aspect=a;cam.fov=a<1.1?THREE.MathUtils.radToDeg(2*Math.atan(Math.tan(THREE.MathUtils.degToRad(21))/a*.98)):40;cam.updateProjectionMatrix()}
+  size();addEventListener("resize",size);
+
+  const M=(c,o)=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.5,metalness:.1},o||{}));
+  const box=(w,h,d,m,x,y,z,p)=>{const g=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);g.position.set(x,y,z);(p||S).add(g);return g};
+  function radial(stops){const c=document.createElement("canvas");c.width=c.height=128;const x=c.getContext("2d"),g=x.createRadialGradient(64,64,0,64,64,64);stops.forEach(([o,col])=>g.addColorStop(o,col));x.fillStyle=g;x.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)}
+  const glow=(r,g,b)=>radial([[0,`rgba(${r},${g},${b},1)`],[.22,`rgba(${r},${g},${b},.5)`],[1,`rgba(${r},${g},${b},0)`]]);
+  const T={warm:glow(255,232,190),blue:glow(70,105,255),white:glow(225,235,255),red:glow(255,40,50)};
+  const add=(tex,op)=>new THREE.SpriteMaterial({map:tex,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,opacity:op==null?1:op});
+  const sprite=(tex,sx,sy,x,y,z,p,op)=>{const s=new THREE.Sprite(add(tex,op));s.scale.set(sx,sy,1);s.position.set(x,y,z);(p||S).add(s);return s};
+  const flat=(tex,w,d,x,z,op,p)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,d),new THREE.MeshBasicMaterial({map:tex,transparent:true,opacity:op,blending:THREE.AdditiveBlending,depthWrite:false}));m.rotation.x=-Math.PI/2;m.position.set(x,.03,z);(p||S).add(m);return m};
+  function canvasTex(w,h,draw){const c=document.createElement("canvas");c.width=w;c.height=h;draw(c.getContext("2d"),w,h);const tx=new THREE.CanvasTexture(c);tx.encoding=THREE.sRGBEncoding;tx.anisotropy=4;return tx}
+
+  /* lights */
+  S.add(new THREE.HemisphereLight(0x4a64ff,0x05060c,.28));
+  const moon=new THREE.DirectionalLight(0xa9bcff,.45);moon.position.set(-8,14,10);S.add(moon);
+  const rim=new THREE.DirectionalLight(0xf4d48a,.35);rim.position.set(14,5,8);S.add(rim);
+  const back=new THREE.DirectionalLight(0x3b5cff,.8);back.position.set(0,6,-14);S.add(back);
+
+  /* street */
+  const road=new THREE.Mesh(new THREE.PlaneGeometry(260,60),M(0x05070f,{roughness:.6,metalness:.35}));road.rotation.x=-Math.PI/2;S.add(road);
+  const dash=M(0x8c95bd,{emissive:0x1d2550,roughness:.6});for(let x=-130;x<130;x+=6)box(3,.02,.14,dash,x,.012,-2.8);
+  const red=M(0x8a1620,{roughness:.6}),wht=M(0x9a9ca6,{roughness:.6});
+  for(let x=-130,i=0;x<130;x+=1.4,i++)box(1.4,.22,.45,i%2?wht:red,x+.7,.11,3.3);
+  box(260,.2,8,M(0x06080f,{roughness:.95}),0,.1,7.6);
+  const pole=M(0x7d84a0,{metalness:.7,roughness:.35}),head=M(0xffffff,{emissive:0xfff0d0,emissiveIntensity:2.2});
+  for(let x=-72;x<=72;x+=12){box(.13,5.6,.13,pole,x,2.8,-5.6);box(1.3,.08,.12,pole,x+.6,5.6,-5.6);box(.55,.1,.28,head,x+1.15,5.55,-5.6);sprite(T.warm,3.4,3.4,x+1.15,5.4,-5.6,S,.85);flat(T.warm,7,5,x+1.15,-3.8,.16)}
+  const n=700,pos=new Float32Array(n*3),col=new Float32Array(n*3);
+  for(let i=0;i<n;i++){pos[i*3]=(Math.random()-.5)*220;pos[i*3+1]=.3+Math.random()*Math.random()*9;pos[i*3+2]=-42-Math.random()*34;col.set(Math.random()<.35?[.35,.45,1]:[1,.82,.5],i*3)}
+  const pg=new THREE.BufferGeometry();pg.setAttribute("position",new THREE.BufferAttribute(pos,3));pg.setAttribute("color",new THREE.BufferAttribute(col,3));
+  S.add(new THREE.Points(pg,new THREE.PointsMaterial({size:.38,vertexColors:true,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false,fog:false})));
+
+  /* reflections for gloss paint and tinted glass */
+  {const pm=new THREE.PMREMGenerator(R),es=new THREE.Scene(),lit=(r,g,b)=>new THREE.MeshBasicMaterial({color:new THREE.Color(r,g,b),side:THREE.DoubleSide});
+   es.add(new THREE.Mesh(new THREE.SphereGeometry(40,32,16),new THREE.MeshBasicMaterial({color:0x060a1c,side:THREE.BackSide})));
+   [[0,24,0,60,4,lit(2.2,2.3,2.6)],[-18,10,-14,20,2,lit(.6,.9,3.2)],[18,8,14,16,2,lit(2.4,1.9,1.2)],[0,6,30,30,1.5,lit(1.4,1.5,2)]].forEach(([x,y,z,w,h,m])=>{const p=new THREE.Mesh(new THREE.PlaneGeometry(w,h),m);p.position.set(x,y,z);p.lookAt(0,0,0);es.add(p)});
+   S.environment=pm.fromScene(es,.03).texture;pm.dispose()}
+
+  /* Ihsan's Sprinter: long high-roof, black, tinted, VIP swing door */
+  const bus=new THREE.Group();S.add(bus);
+  const paint=M(0x050608,{metalness:.55,roughness:.18,envMapIntensity:1.1});
+  const satin=M(0x0a0b0f,{metalness:.3,roughness:.55});
+  const glass=M(0x020308,{metalness:1,roughness:.04,emissive:0x1a30c0,emissiveIntensity:.14,envMapIntensity:1.4});
+  const chrome=M(0xe0e4ec,{metalness:1,roughness:.12,envMapIntensity:1.3});
+  const th=Math.asin(.17/.5),ZS=1.0;
+  const sh=new THREE.Shape();
+  sh.moveTo(-3.62,.6);sh.lineTo(-2.22,.55);sh.absarc(-1.75,.38,.5,Math.PI-th,th,true);sh.lineTo(2.08,.55);sh.absarc(2.55,.38,.5,Math.PI-th,th,true);
+  sh.lineTo(3.6,.45);sh.quadraticCurveTo(3.8,.47,3.8,.65);sh.lineTo(3.8,1.22);sh.quadraticCurveTo(3.79,1.36,3.55,1.4);sh.lineTo(2.98,1.55);
+  sh.lineTo(2.08,2.68);sh.quadraticCurveTo(1.98,2.88,1.7,2.88);sh.lineTo(-3.45,2.88);sh.quadraticCurveTo(-3.7,2.88,-3.7,2.6);sh.lineTo(-3.7,.85);sh.quadraticCurveTo(-3.7,.6,-3.62,.6);
+  const bg=new THREE.ExtrudeGeometry(sh,{depth:1.88,bevelEnabled:true,bevelThickness:.06,bevelSize:.05,bevelSegments:5,curveSegments:24});bg.translate(0,0,-.94);
+  bus.add(new THREE.Mesh(bg,paint));
+  box(7.2,.2,1.7,M(0x020203,{roughness:1}),0,.48,0,bus);
+
+  /* glass: passenger windows, cab windows, windshield, rear */
+  const flatPane=(pts,z)=>{const p=new THREE.Shape();p.moveTo(pts[0][0],pts[0][1]);pts.slice(1).forEach(q=>p.lineTo(q[0],q[1]));const g=new THREE.ShapeGeometry(p),m=new THREE.Mesh(g,glass);m.position.z=z;if(z<0)m.rotation.y=Math.PI,m.scale.x=-1;bus.add(m);return m};
+  const cab=[[1.22,1.62],[2.66,1.62],[2.02,2.5],[1.22,2.5]];
+  [ZS+.004,-ZS-.004].forEach(z=>{flatPane(cab,z);[[-3.48,-2.38],[-2.28,-1.18],[-1.08,.12]].forEach(([x0,x1])=>flatPane([[x0,1.68],[x1,1.68],[x1,2.58],[x0,2.58]],z))});
+  flatPane([[.25,1.68],[1.08,1.68],[1.08,2.58],[.25,2.58]],-ZS-.004);
+  const ws=box(1.47,.02,1.7,glass,2.585,2.14,0,bus);ws.rotation.z=-.911;
+  [[-.45],[.45]].forEach(([z])=>{const r=box(.02,.8,.7,glass,-3.765,2.15,z,bus)});
+  box(.02,1.9,.02,satin,-3.77,1.7,0,bus);
+
+  /* front: vertical-bar grille, slim LED lights, black bumper, yellow plate */
+  const FX=3.86;
+  box(.04,.44,1.02,M(0x020204,{roughness:.6}),FX,1.0,0,bus);
+  [[.5,.03],[-.5,.03]].forEach(([z])=>box(.05,.46,.035,chrome,FX+.01,1.0,z,bus));box(.05,.035,1.04,chrome,FX+.01,1.225,0,bus);box(.05,.035,1.04,chrome,FX+.01,.775,0,bus);
+  for(let k=-6;k<=6;k++)box(.05,.4,.022,chrome,FX+.015,1.0,k*.075,bus);
+  const hlM=M(0xffffff,{emissive:0xe6eeff,emissiveIntensity:3}),drlM=M(0xffffff,{emissive:0xd7e2ff,emissiveIntensity:5});
+  [1,-1].forEach(sg=>{const h=box(.06,.13,.36,M(0x0b0d14,{metalness:.8,roughness:.1}),FX-.01,1.24,sg*.76,bus);box(.04,.07,.12,hlM,FX+.02,1.255,sg*.66,bus);box(.04,.07,.1,hlM,FX+.02,1.255,sg*.82,bus);
+    const drl=box(.03,.025,.34,drlM,FX+.025,1.185,sg*.76,bus);const wrap=box(.3,.12,.03,M(0x0b0d14,{metalness:.8,roughness:.1}),3.62,1.26,sg*(ZS+.02),bus);box(.22,.022,.03,drlM,3.64,1.2,sg*(ZS+.03),bus);
+    box(.05,.08,.14,M(0xffffff,{emissive:0xffffff,emissiveIntensity:1.2}),FX-.02,.6,sg*.78,bus)});
+  const hlS=[.76,-.76].map(z=>sprite(T.white,1.9,1.1,FX+.2,1.24,z,bus,.9));
+  box(.12,.32,1.98,satin,3.74,.58,0,bus);
+  const plate=canvasTex(256,64,(x,w,h)=>{x.fillStyle="#f2c200";x.fillRect(0,0,w,h);x.fillStyle="#1b5bd6";x.fillRect(0,0,26,h);x.fillStyle="#111";x.font="bold 40px sans-serif";x.textAlign="center";x.textBaseline="middle";x.fillText("684-28-703",w/2+12,h/2+2)});
+  const pl=new THREE.Mesh(new THREE.PlaneGeometry(.52,.13),new THREE.MeshStandardMaterial({map:plate,roughness:.5}));pl.position.set(3.81,.6,0);pl.rotation.y=Math.PI/2;bus.add(pl);
+  const beam=flat(T.white,9,4,8.6,0,.35,bus);
+
+  /* rear lights, roof AC, antenna, mirrors */
+  [.88,-.88].forEach(z=>{box(.05,.62,.12,M(0x330006,{emissive:0xff1a2a,emissiveIntensity:2.4}),-3.74,1.3,z,bus);sprite(T.red,1,1.5,-3.86,1.3,z,bus,.6)});
+  box(1.5,.16,1.3,M(0x0b0c12,{metalness:.5,roughness:.35}),.6,2.98,0,bus);box(1.3,.03,1.1,M(0x16181f,{roughness:.5}),.6,3.07,0,bus);
+  box(.03,.32,.03,satin,1.85,3.04,.2,bus).rotation.z=-.4;
+  [1,-1].forEach(sg=>{box(.05,.05,.26,satin,2.0,2.05,sg*(ZS+.12),bus);box(.14,.38,.07,paint,1.98,2.0,sg*(ZS+.27),bus);box(.02,.3,.05,glass,1.9,2.0,sg*(ZS+.27),bus)});
+
+  /* wheels with chrome hubcaps */
+  const tire=M(0x09090c,{roughness:.92});
+  const wheels=[[2.55,1],[2.55,-1],[-1.75,1],[-1.75,-1]].map(([x,sg])=>{const w=new THREE.Group(),tr=new THREE.Mesh(new THREE.CylinderGeometry(.38,.38,.24,36),tire);tr.rotation.x=Math.PI/2;w.add(tr);
+    const cap=new THREE.Mesh(new THREE.SphereGeometry(.24,28,14,0,Math.PI*2,0,Math.PI/2),chrome);cap.rotation.x=sg*Math.PI/2;cap.scale.set(1,.35,1);cap.position.z=sg*.12;w.add(cap);
+    for(let k=0;k<8;k++){const a=k*Math.PI/4,b=new THREE.Mesh(new THREE.CylinderGeometry(.022,.022,.03,8),M(0x1a1c22,{metalness:.8,roughness:.3}));b.rotation.x=Math.PI/2;b.position.set(Math.cos(a)*.17,Math.sin(a)*.17,sg*.145);w.add(b)}
+    w.position.set(x,.38,sg*.88);bus.add(w);return w});
+  const shadow=new THREE.Mesh(new THREE.PlaneGeometry(9.2,3.4),new THREE.MeshBasicMaterial({map:radial([[0,"rgba(0,0,0,.9)"],[.6,"rgba(0,0,0,.45)"],[1,"rgba(0,0,0,0)"]]),transparent:true,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=.02;bus.add(shadow);
+
+  /* rear-side lettering like on the van */
+  const lett=canvasTex(512,96,(x,w,h)=>{x.fillStyle="#f2f2f2";x.textAlign="center";x.textBaseline="middle";x.font="600 34px Assistant,Arial,sans-serif";x.direction="rtl";x.fillText("הסעות מטר",w/2,30);x.direction="ltr";x.font="600 30px Arial,sans-serif";x.fillText("052-4406710",w/2,72)});
+  const lt=new THREE.Mesh(new THREE.PlaneGeometry(.9,.17),new THREE.MeshBasicMaterial({map:lett,transparent:true,opacity:.85}));lt.position.set(-2.95,2.18,ZS+.008);bus.add(lt);
+
+  /* VIP swing door: hinge at the front edge, opens outward like in his night photo */
+  const DX0=.25,DX1=1.1,DW=DX1-DX0,DY=1.62,DH=1.94;
+  const inside=canvasTex(200,460,(x,w,h)=>{const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,"#2c48ff");g.addColorStop(.55,"#1226a8");g.addColorStop(1,"#071040");x.fillStyle=g;x.fillRect(0,0,w,h);
+    x.fillStyle="#cfdcff";x.fillRect(0,16,w,6);x.fillStyle="rgba(207,220,255,.6)";x.fillRect(0,44,w,3);
+    for(let i=0;i<2;i++){const sx=18+i*90,sy=150;x.fillStyle="#04081f";x.beginPath();if(x.roundRect)x.roundRect(sx,sy,74,210,16);else x.rect(sx,sy,74,210);x.fill();x.strokeStyle="rgba(150,175,255,.4)";x.lineWidth=1.4;
+      for(let d=-6;d<12;d++){x.beginPath();x.moveTo(sx+4,sy+20+d*16);x.lineTo(sx+70,sy+20+d*16+40);x.moveTo(sx+70,sy+20+d*16);x.lineTo(sx+4,sy+20+d*16+40);x.save();x.beginPath();x.rect(sx+4,sy+20,66,170);x.clip();x.stroke();x.restore()}}
+    x.fillStyle="#e6ecff";x.fillRect(0,h-14,w,4)});
+  const hole=new THREE.Mesh(new THREE.PlaneGeometry(DW,DH),new THREE.MeshBasicMaterial({map:inside}));hole.position.set((DX0+DX1)/2,DY,ZS+.003);bus.add(hole);
+  const seam=M(0x000000,{roughness:1});[[0,DH/2,DW+.03,.02],[0,-DH/2,DW+.03,.02],[-DW/2,0,.02,DH],[DW/2,0,.02,DH]].forEach(([dx,dy,w,h])=>box(w,h,.015,seam,(DX0+DX1)/2+dx,DY+dy,ZS+.006,bus));
+  const door=new THREE.Group();door.position.set(DX1,DY,ZS+.03);bus.add(door);
+  box(DW,DH,.045,paint,-DW/2,0,0,door);
+  const dg=box(DW-.12,.8,.012,glass,-DW/2,.5,.026,door);
+  box(.03,.16,.04,chrome,-DW+.1,-.05,.04,door);
+  const vipTx=canvasTex(256,128,(x,w,h)=>{const g=x.createLinearGradient(0,20,0,108);g.addColorStop(0,"#f6dc98");g.addColorStop(.5,"#d6a645");g.addColorStop(1,"#8f6620");x.fillStyle=g;x.font="700 84px Georgia,'Times New Roman',serif";x.textAlign="center";x.textBaseline="middle";x.fillText("VIP",w/2,h/2+4)});
+  const vip=new THREE.Mesh(new THREE.PlaneGeometry(.38,.19),new THREE.MeshStandardMaterial({map:vipTx,transparent:true,metalness:.7,roughness:.25}));vip.position.set(-DW/2,-.2,.026);door.add(vip);
+  const stepM=M(0xffffff,{emissive:0xdfe6ff,emissiveIntensity:0}),edgeM=M(0x2a2200,{emissive:0xf2c200,emissiveIntensity:0});
+  const stepG=new THREE.Group();stepG.position.set((DX0+DX1)/2,.5,ZS-.2);bus.add(stepG);box(DW-.06,.05,.3,stepM,0,0,0,stepG);box(DW-.06,.05,.04,edgeM,0,0,.16,stepG);
+  const doorGlow=sprite(T.blue,3.6,4,(DX0+DX1)/2-.2,1.6,ZS+.7,bus,0);
+  const floorGlow=flat(T.blue,3.4,2.6,(DX0+DX1)/2,ZS+1.2,0,bus);
+  const stepGlow=flat(T.white,1.6,1.2,(DX0+DX1)/2,ZS+.55,0,bus);
+  const inLight=new THREE.PointLight(0x3b5cff,0,8,1.6);inLight.position.set(.6,1.6,ZS+.9);bus.add(inLight);
+  const headL=new THREE.SpotLight(0xdfe8ff,2.4,34,.5,.6,1.2);headL.position.set(3.8,1.2,0);headL.target.position.set(14,0,0);bus.add(headL,headL.target);
+
+  /* timeline */
+  const ease=k=>1-Math.pow(1-k,3),io=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2,cl=(a,b,v)=>Math.min(b,Math.max(a,v)),seg=(t,a,b)=>cl(0,1,(t-a)/(b-a));
+  const lerp=(a,b,k)=>a+(b-a)*k,V=(x,y,z)=>new THREE.Vector3(x,y,z);
+  const C0=V(-5.5,2.5,12.5),C1=V(5.6,2.2,10.6),C2n=V(5.8,1.55,6.9),L2n=V(1.3,1.35,.8),C2w=V(6.4,1.55,7.4),L2w=V(.9,1.0,.6),L1=V(.4,1.35,0);
+  const START=-36,ARRIVE=2.7,DOOR=3.0,DOLLY=3.5,COPY=4.2,DONE=7.4,bar=$("#introBar");
+  let raf,t0=null,showed=false;
+  function frame(now){
+    if(t0===null)t0=now;const t=(now-t0)/1000;
+    const a=ease(seg(t,0,ARRIVE)),bx=lerp(START,0,a);bus.position.x=bx;
+    const settle=t>ARRIVE?Math.exp(-(t-ARRIVE)*4)*Math.sin((t-ARRIVE)*14)*.025:0;bus.position.y=settle;bus.rotation.z=t<ARRIVE?-.004*(1-a):-settle*.3;
+    wheels.forEach(w=>w.rotation.z=-(bx-START)/.47);
+    const fl=t>ARRIVE-.2&&t<ARRIVE+.5?(Math.sin((t-ARRIVE+.2)*28)>0?1.6:.6):1;hlS.forEach(s=>s.material.opacity=.9*fl);hlM.emissiveIntensity=3*fl;drlM.emissiveIntensity=5*fl;
+    beam.material.opacity=.35*(1-seg(t,DOLLY,DOLLY+.8)*.6);
+    door.rotation.y=1.25*io(seg(t,DOOR,DOOR+1.3));
+    const lit=seg(t,DOOR+.1,DOOR+1.2);inLight.intensity=4.5*lit;doorGlow.material.opacity=.9*lit;floorGlow.material.opacity=.55*lit;stepG.position.z=ZS-.2+.32*io(seg(t,DOOR+.2,DOOR+.9));glass.emissiveIntensity=.14+.5*lit;stepM.emissiveIntensity=2.2*lit;edgeM.emissiveIntensity=1.6*lit;stepGlow.material.opacity=.5*lit;
+    const c=io(seg(t,0,ARRIVE+.2)),c2=io(seg(t,DOLLY,DOLLY+1.9));
+    const C2=wide?C2w:C2n,L2=wide?L2w:L2n;cam.position.copy(C0).lerp(C1,c).lerp(C2,c2);
+    const look=V(lerp(bx+2.5,L1.x,c),L1.y,L1.z).lerp(L2,c2);cam.lookAt(look);
+    if(!showed&&t>COPY){showed=true;el.classList.add("show")}
+    bar.style.transform=`scaleX(${cl(0,1,t/DONE)})`;
+    R.render(S,cam);
+    if(t>DONE)end();
+    if(!ended||t<DONE+1)raf=requestAnimationFrame(frame);
+  }
+  stop=()=>{cancelAnimationFrame(raf);removeEventListener("resize",size);R.dispose()};
+  raf=requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
