@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://matar-transport.com/sitemap.xml

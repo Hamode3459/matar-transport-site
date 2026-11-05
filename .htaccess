@@ -1,5 +1,8 @@
-# Always use HTTPS
 RewriteEngine On
+# www -> main domain
+RewriteCond %{HTTP_HOST} ^www\.matar-transport\.com$ [NC]
+RewriteRule ^ https://matar-transport.com%{REQUEST_URI} [L,R=301]
+# Always use HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 

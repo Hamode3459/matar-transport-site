@@ -10,11 +10,16 @@ img{max-width:100%}
 [hidden]{display:none!important}
 </style>
 <meta name="description" content="מטר הסעות – הסעות VIP לכל הארץ. מיניבוסים חדשים ונוחים מ־2 עד 60 מקומות, נתב״ג, מעבר נהר הירדן, חתונות, אילת וטיולים פרטיים. זמינות 24/7: 052-4406710">
+<link rel="canonical" href="https://matar-transport.com/">
 <meta name="theme-color" content="#050817">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://matar-transport.com/">
+<meta property="og:site_name" content="Matar Transport">
 <meta property="og:title" content="מטר הסעות · Matar Transport">
 <meta property="og:description" content="הסעות VIP לכל הארץ · 24/7 · 052-4406710">
-<meta property="og:image" content="img/og.jpg">
+<meta property="og:image" content="https://matar-transport.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -308,22 +313,6 @@ footer{border-top:1px solid var(--line);padding-block:32px 40px;color:var(--mute
 footer .logo{color:var(--ink)}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-
-/* intro: 3D night arrival */
-#intro{position:fixed;inset:0;z-index:100;background:#050817;color:#eef1ff;transition:opacity .8s ease,visibility .8s}
-#intro.out{opacity:0;visibility:hidden;pointer-events:none}
-#introCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-#intro .shade{position:absolute;inset:auto 0 0;height:55%;background:linear-gradient(transparent,rgba(5,8,23,.92));pointer-events:none}
-.intro-copy{position:absolute;inset:auto 0 0;display:grid;justify-items:center;gap:14px;text-align:center;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-bottom:calc(44px + env(safe-area-inset-bottom,0px));opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
-#intro.show .intro-copy{opacity:1;transform:none}
-.intro-brand{font:500 .82rem var(--board);letter-spacing:.24em;text-transform:uppercase;color:#f4d48a}
-.intro-title{font:400 clamp(2.1rem,7vw,4.4rem)/1.05 var(--display);margin:0;text-wrap:balance;max-width:16ch}
-#intro .vip{color:#9db4ff;text-shadow:0 0 18px #3b5cff,0 0 42px rgba(59,92,255,.6)}
-#intro .gold-text{background:linear-gradient(180deg,#f4d48a,#d6a645 55%,#9c7224);-webkit-background-clip:text;background-clip:text;color:transparent}
-#introSkip{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));inset-inline-end:max(16px,env(safe-area-inset-right,0px));background:rgba(11,17,48,.6);border:1px solid #1f2a62;color:#eef1ff;border-radius:999px;padding:8px 16px;font:600 .9rem var(--body);cursor:pointer;backdrop-filter:blur(6px)}
-#introEnter{color:#1c160c}
-.intro-bar{position:absolute;top:0;inset-inline:0;height:2px;background:#3b5cff;box-shadow:0 0 10px #3b5cff;transform-origin:left;transform:scaleX(0)}
-[dir=rtl] .intro-bar{transform-origin:right}
 </style>
 </head>
 <body>
@@ -340,18 +329,6 @@ footer .logo{color:var(--ink)}
     <symbol id="ph" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></symbol>
   </defs>
 </svg>
-
-<div id="intro" role="dialog" aria-label="Matar Transport">
-  <canvas id="introCanvas"></canvas>
-  <div class="shade"></div>
-  <div class="intro-bar" id="introBar"></div>
-  <button type="button" id="introSkip">דלג</button>
-  <div class="intro-copy">
-    <div class="intro-brand" id="introBrand">מטר הסעות</div>
-    <h2 class="intro-title" id="introTitle"></h2>
-    <button type="button" class="btn btn-gold" id="introEnter">כניסה לאתר</button>
-  </div>
-</div>
 
 <header>
   <div class="bar">
@@ -562,7 +539,6 @@ footer .logo{color:var(--ink)}
   <span style="direction:ltr;font-family:var(--board);user-select:all">052-4406710</span>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 const PHONE="972524406710";
@@ -578,7 +554,7 @@ const PLACES=[["נתב״ג","مطار بن غوريون","Ben Gurion Airport",32
 const PACKS=[{type:3,round:true,rt:"23:30",pick:3,pax:20},{type:2,round:true,rt:"02:00",pick:3,pax:12},{type:0,round:false,pick:2,pax:6}];
 const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const I={
-he:{dir:"rtl",brand:"מטר הסעות",nav_fleet:"הצי",nav_trips:"נסיעות",nav_book:"הזמנה",kicker:"24/7 · 2–60 מקומות",hero_title:"הסעות VIP לכל הארץ",day:"יום",night:"לילה",skip:"דלג",enter:"כניסה לאתר",hero_sub:"רכבי VIP חדשים ונוחים, מ־2 ועד 60 מקומות. נהגים מקצועיים וזמינות מלאה, ביום ובלילה.",cta_book:"הזמינו הסעה",
+he:{dir:"rtl",brand:"מטר הסעות",nav_fleet:"הצי",nav_trips:"נסיעות",nav_book:"הזמנה",kicker:"24/7 · 2–60 מקומות",hero_title:"הסעות VIP לכל הארץ",day:"יום",night:"לילה",hero_sub:"רכבי VIP חדשים ונוחים, מ־2 ועד 60 מקומות. נהגים מקצועיים וזמינות מלאה, ביום ובלילה.",cta_book:"הזמינו הסעה",
 p1:"נהגים מקצועיים",p1d:"אמינות ובטחון",p2:"שירות 24/7",p2d:"זמינות מלאה",p3:"נסיעה נוחה",p3d:"חוויה ברמה אחרת",
 fleet_kicker:"הצי שלנו · 2 עד 60 מקומות",fleet_title:"כמה אתם?",fleet_sub:"הזיזו את המחוון ותראו איזה רכב מתאים לקבוצה שלכם.",pax_label:"נוסעים",
 veh:["רכב מנהלים VIP","ג׳יפ יוקרתי","מיניבוס ספרינטר VIP","מידיבוס","אוטובוס"],vshort:["VIP","ג׳יפ","ספרינטר","מידיבוס","אוטובוס"],cap:"עד {n} מקומות",
@@ -600,7 +576,7 @@ f_type:"סוג נסיעה",f_from:"מאיפה",f_to:"לאן",f_date:"תאריך"
 ph_from:"עיר או כתובת איסוף",ph_to:"יעד",ph_name:"השם שלכם",ph_note:"חזור? עצירות? מזוודות גדולות?",defFrom:"",
 tk_label:"כרטיס עלייה",tk_pax:"נוסעים",tk_car:"רכב",tk_ref:"מספר",send:"שליחה בוואטסאפ",hint:"ההודעה נפתחת בוואטסאפ מוכנה לשליחה. לא נפתח? התקשרו או כתבו למספר:",copy:"העתקה",copied:"הועתק",
 foot:"פתוח 24 שעות, 7 ימים בשבוע",wa_hi:"שלום, אני רוצה להזמין הסעה:"},
-ar:{dir:"rtl",brand:"مطر للسفريات",nav_fleet:"الأسطول",nav_trips:"الرحلات",nav_book:"احجز",kicker:"24/7 · 2–60 مقعدًا",hero_title:"سفريات VIP لكل البلاد",day:"نهار",night:"ليل",skip:"تخطَّ",enter:"ادخلوا إلى الموقع",hero_sub:"مركبات VIP جديدة ومريحة، من مقعدين حتى 60 مقعدًا. سائقون محترفون ومتوفرون ليلًا ونهارًا.",cta_book:"احجز سفرية",
+ar:{dir:"rtl",brand:"مطر للسفريات",nav_fleet:"الأسطول",nav_trips:"الرحلات",nav_book:"احجز",kicker:"24/7 · 2–60 مقعدًا",hero_title:"سفريات VIP لكل البلاد",day:"نهار",night:"ليل",hero_sub:"مركبات VIP جديدة ومريحة، من مقعدين حتى 60 مقعدًا. سائقون محترفون ومتوفرون ليلًا ونهارًا.",cta_book:"احجز سفرية",
 p1:"سائقون محترفون",p1d:"موثوقية وأمان",p2:"خدمة 24/7",p2d:"متوفرون دائمًا",p3:"رحلة مريحة",p3d:"تجربة بمستوى آخر",
 fleet_kicker:"أسطولنا · من 2 حتى 60 مقعدًا",fleet_title:"كم عددكم؟",fleet_sub:"حرّكوا المؤشر وشاهدوا المركبة المناسبة لمجموعتكم.",pax_label:"ركاب",
 veh:["سيارة VIP تنفيذية","جيب فاخر","ميني باص سبرينتر VIP","ميدي باص","حافلة"],vshort:["VIP","جيب","سبرينتر","ميدي باص","حافلة"],cap:"حتى {n} مقعدًا",
@@ -622,7 +598,7 @@ f_type:"نوع الرحلة",f_from:"من",f_to:"إلى",f_date:"التاريخ"
 ph_from:"البلد أو عنوان الاستلام",ph_to:"الوجهة",ph_name:"اسمكم",ph_note:"عودة؟ توقفات؟ حقائب كبيرة؟",defFrom:"",
 tk_label:"بطاقة صعود",tk_pax:"ركاب",tk_car:"المركبة",tk_ref:"رقم",send:"إرسال عبر واتساب",hint:"تُفتح الرسالة في واتساب جاهزة للإرسال. لم تُفتح؟ اتصلوا أو راسلوا الرقم:",copy:"نسخ",copied:"تم النسخ",
 foot:"مفتوح 24 ساعة، 7 أيام في الأسبوع",wa_hi:"مرحبًا، أريد حجز سفرية:"},
-en:{dir:"ltr",brand:"Matar Transport",nav_fleet:"Fleet",nav_trips:"Trips",nav_book:"Book",kicker:"24/7 · 2–60 seats",hero_title:"VIP transport all over the country",day:"Day",night:"Night",skip:"Skip",enter:"Enter site",hero_sub:"New, comfortable VIP vehicles from 2 to 60 seats. Professional drivers, available day and night.",cta_book:"Book a ride",
+en:{dir:"ltr",brand:"Matar Transport",nav_fleet:"Fleet",nav_trips:"Trips",nav_book:"Book",kicker:"24/7 · 2–60 seats",hero_title:"VIP transport all over the country",day:"Day",night:"Night",hero_sub:"New, comfortable VIP vehicles from 2 to 60 seats. Professional drivers, available day and night.",cta_book:"Book a ride",
 p1:"Professional drivers",p1d:"Reliable and safe",p2:"24/7 service",p2d:"Always available",p3:"Comfortable ride",p3d:"A different level",
 fleet_kicker:"Our fleet · 2 to 60 seats",fleet_title:"How many of you?",fleet_sub:"Drag the slider to see which vehicle fits your group.",pax_label:"passengers",
 veh:["VIP executive car","Luxury SUV","Sprinter VIP minibus","Midibus","Coach"],vshort:["VIP","SUV","Sprinter","Midibus","Coach"],cap:"Up to {n} seats",
@@ -870,172 +846,6 @@ const ymd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${Str
 if(store.get("matar-theme")==="day")document.body.classList.add("day");
 applyLang(L);
 
-/* ===== intro: 3D Sprinter arrives, door slides open ===== */
-(function(){
-  const el=$("#intro");if(!el)return;
-  let stop=null,ended=false;
-  const html=document.documentElement;
-  const end=()=>{if(ended)return;ended=true;el.classList.add("out");html.style.overflow="";setTimeout(()=>{if(stop)stop();el.remove()},850)};
-  if(matchMedia("(prefers-reduced-motion: reduce)").matches||typeof THREE==="undefined"){el.remove();return}
-  let R;
-  try{R=new THREE.WebGLRenderer({canvas:$("#introCanvas"),antialias:true,powerPreference:"high-performance"})}catch(e){el.remove();return}
-  html.style.overflow="hidden";
-  const t=I[L];
-  $("#introBrand").textContent=t.brand;$("#introSkip").textContent=t.skip;$("#introEnter").textContent=t.enter;
-  const it=$("#introTitle");t.hero_title.split(/(VIP)/).filter(Boolean).forEach(p=>{const sp=document.createElement("span");sp.className=p==="VIP"?"vip":"gold-text";sp.textContent=p;it.appendChild(sp)});
-  $("#introSkip").addEventListener("click",end);$("#introEnter").addEventListener("click",end);
-  addEventListener("keydown",e=>{if(e.key==="Escape"||e.key==="Enter")end()},{once:true});
-
-  R.setPixelRatio(Math.min(devicePixelRatio||1,2));
-  R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.05;
-  const S=new THREE.Scene();S.background=new THREE.Color(0x050817);S.fog=new THREE.Fog(0x050817,20,75);
-  const cam=new THREE.PerspectiveCamera(40,1,.1,250);
-  let wide=false;
-  function size(){const w=el.clientWidth,h=el.clientHeight,a=w/h;wide=a>1.1;R.setSize(w,h,false);cam.aspect=a;cam.fov=a<1.1?THREE.MathUtils.radToDeg(2*Math.atan(Math.tan(THREE.MathUtils.degToRad(21))/a*.98)):40;cam.updateProjectionMatrix()}
-  size();addEventListener("resize",size);
-
-  const M=(c,o)=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.5,metalness:.1},o||{}));
-  const box=(w,h,d,m,x,y,z,p)=>{const g=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);g.position.set(x,y,z);(p||S).add(g);return g};
-  function radial(stops){const c=document.createElement("canvas");c.width=c.height=128;const x=c.getContext("2d"),g=x.createRadialGradient(64,64,0,64,64,64);stops.forEach(([o,col])=>g.addColorStop(o,col));x.fillStyle=g;x.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)}
-  const glow=(r,g,b)=>radial([[0,`rgba(${r},${g},${b},1)`],[.22,`rgba(${r},${g},${b},.5)`],[1,`rgba(${r},${g},${b},0)`]]);
-  const T={warm:glow(255,232,190),blue:glow(70,105,255),white:glow(225,235,255),red:glow(255,40,50)};
-  const add=(tex,op)=>new THREE.SpriteMaterial({map:tex,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,opacity:op==null?1:op});
-  const sprite=(tex,sx,sy,x,y,z,p,op)=>{const s=new THREE.Sprite(add(tex,op));s.scale.set(sx,sy,1);s.position.set(x,y,z);(p||S).add(s);return s};
-  const flat=(tex,w,d,x,z,op,p)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,d),new THREE.MeshBasicMaterial({map:tex,transparent:true,opacity:op,blending:THREE.AdditiveBlending,depthWrite:false}));m.rotation.x=-Math.PI/2;m.position.set(x,.03,z);(p||S).add(m);return m};
-  function canvasTex(w,h,draw){const c=document.createElement("canvas");c.width=w;c.height=h;draw(c.getContext("2d"),w,h);const tx=new THREE.CanvasTexture(c);tx.encoding=THREE.sRGBEncoding;tx.anisotropy=4;return tx}
-
-  /* lights */
-  S.add(new THREE.HemisphereLight(0x4a64ff,0x05060c,.28));
-  const moon=new THREE.DirectionalLight(0xa9bcff,.45);moon.position.set(-8,14,10);S.add(moon);
-  const rim=new THREE.DirectionalLight(0xf4d48a,.35);rim.position.set(14,5,8);S.add(rim);
-  const back=new THREE.DirectionalLight(0x3b5cff,.8);back.position.set(0,6,-14);S.add(back);
-
-  /* street */
-  const road=new THREE.Mesh(new THREE.PlaneGeometry(260,60),M(0x05070f,{roughness:.6,metalness:.35}));road.rotation.x=-Math.PI/2;S.add(road);
-  const dash=M(0x8c95bd,{emissive:0x1d2550,roughness:.6});for(let x=-130;x<130;x+=6)box(3,.02,.14,dash,x,.012,-2.8);
-  const red=M(0x8a1620,{roughness:.6}),wht=M(0x9a9ca6,{roughness:.6});
-  for(let x=-130,i=0;x<130;x+=1.4,i++)box(1.4,.22,.45,i%2?wht:red,x+.7,.11,3.3);
-  box(260,.2,8,M(0x06080f,{roughness:.95}),0,.1,7.6);
-  const pole=M(0x7d84a0,{metalness:.7,roughness:.35}),head=M(0xffffff,{emissive:0xfff0d0,emissiveIntensity:2.2});
-  for(let x=-72;x<=72;x+=12){box(.13,5.6,.13,pole,x,2.8,-5.6);box(1.3,.08,.12,pole,x+.6,5.6,-5.6);box(.55,.1,.28,head,x+1.15,5.55,-5.6);sprite(T.warm,3.4,3.4,x+1.15,5.4,-5.6,S,.85);flat(T.warm,7,5,x+1.15,-3.8,.16)}
-  const n=700,pos=new Float32Array(n*3),col=new Float32Array(n*3);
-  for(let i=0;i<n;i++){pos[i*3]=(Math.random()-.5)*220;pos[i*3+1]=.3+Math.random()*Math.random()*9;pos[i*3+2]=-42-Math.random()*34;col.set(Math.random()<.35?[.35,.45,1]:[1,.82,.5],i*3)}
-  const pg=new THREE.BufferGeometry();pg.setAttribute("position",new THREE.BufferAttribute(pos,3));pg.setAttribute("color",new THREE.BufferAttribute(col,3));
-  S.add(new THREE.Points(pg,new THREE.PointsMaterial({size:.38,vertexColors:true,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false,fog:false})));
-
-  /* reflections for gloss paint and tinted glass */
-  {const pm=new THREE.PMREMGenerator(R),es=new THREE.Scene(),lit=(r,g,b)=>new THREE.MeshBasicMaterial({color:new THREE.Color(r,g,b),side:THREE.DoubleSide});
-   es.add(new THREE.Mesh(new THREE.SphereGeometry(40,32,16),new THREE.MeshBasicMaterial({color:0x060a1c,side:THREE.BackSide})));
-   [[0,24,0,60,4,lit(2.2,2.3,2.6)],[-18,10,-14,20,2,lit(.6,.9,3.2)],[18,8,14,16,2,lit(2.4,1.9,1.2)],[0,6,30,30,1.5,lit(1.4,1.5,2)]].forEach(([x,y,z,w,h,m])=>{const p=new THREE.Mesh(new THREE.PlaneGeometry(w,h),m);p.position.set(x,y,z);p.lookAt(0,0,0);es.add(p)});
-   S.environment=pm.fromScene(es,.03).texture;pm.dispose()}
-
-  /* Ihsan's Sprinter: long high-roof, black, tinted, VIP swing door */
-  const bus=new THREE.Group();S.add(bus);
-  const paint=M(0x050608,{metalness:.55,roughness:.18,envMapIntensity:1.1});
-  const satin=M(0x0a0b0f,{metalness:.3,roughness:.55});
-  const glass=M(0x020308,{metalness:1,roughness:.04,emissive:0x1a30c0,emissiveIntensity:.14,envMapIntensity:1.4});
-  const chrome=M(0xe0e4ec,{metalness:1,roughness:.12,envMapIntensity:1.3});
-  const th=Math.asin(.17/.5),ZS=1.0;
-  const sh=new THREE.Shape();
-  sh.moveTo(-3.62,.6);sh.lineTo(-2.22,.55);sh.absarc(-1.75,.38,.5,Math.PI-th,th,true);sh.lineTo(2.08,.55);sh.absarc(2.55,.38,.5,Math.PI-th,th,true);
-  sh.lineTo(3.6,.45);sh.quadraticCurveTo(3.8,.47,3.8,.65);sh.lineTo(3.8,1.22);sh.quadraticCurveTo(3.79,1.36,3.55,1.4);sh.lineTo(2.98,1.55);
-  sh.lineTo(2.08,2.68);sh.quadraticCurveTo(1.98,2.88,1.7,2.88);sh.lineTo(-3.45,2.88);sh.quadraticCurveTo(-3.7,2.88,-3.7,2.6);sh.lineTo(-3.7,.85);sh.quadraticCurveTo(-3.7,.6,-3.62,.6);
-  const bg=new THREE.ExtrudeGeometry(sh,{depth:1.88,bevelEnabled:true,bevelThickness:.06,bevelSize:.05,bevelSegments:5,curveSegments:24});bg.translate(0,0,-.94);
-  bus.add(new THREE.Mesh(bg,paint));
-  box(7.2,.2,1.7,M(0x020203,{roughness:1}),0,.48,0,bus);
-
-  /* glass: passenger windows, cab windows, windshield, rear */
-  const flatPane=(pts,z)=>{const p=new THREE.Shape();p.moveTo(pts[0][0],pts[0][1]);pts.slice(1).forEach(q=>p.lineTo(q[0],q[1]));const g=new THREE.ShapeGeometry(p),m=new THREE.Mesh(g,glass);m.position.z=z;if(z<0)m.rotation.y=Math.PI,m.scale.x=-1;bus.add(m);return m};
-  const cab=[[1.22,1.62],[2.66,1.62],[2.02,2.5],[1.22,2.5]];
-  [ZS+.004,-ZS-.004].forEach(z=>{flatPane(cab,z);[[-3.48,-2.38],[-2.28,-1.18],[-1.08,.12]].forEach(([x0,x1])=>flatPane([[x0,1.68],[x1,1.68],[x1,2.58],[x0,2.58]],z))});
-  flatPane([[.25,1.68],[1.08,1.68],[1.08,2.58],[.25,2.58]],-ZS-.004);
-  const ws=box(1.47,.02,1.7,glass,2.585,2.14,0,bus);ws.rotation.z=-.911;
-  [[-.45],[.45]].forEach(([z])=>{const r=box(.02,.8,.7,glass,-3.765,2.15,z,bus)});
-  box(.02,1.9,.02,satin,-3.77,1.7,0,bus);
-
-  /* front: vertical-bar grille, slim LED lights, black bumper, yellow plate */
-  const FX=3.86;
-  box(.04,.44,1.02,M(0x020204,{roughness:.6}),FX,1.0,0,bus);
-  [[.5,.03],[-.5,.03]].forEach(([z])=>box(.05,.46,.035,chrome,FX+.01,1.0,z,bus));box(.05,.035,1.04,chrome,FX+.01,1.225,0,bus);box(.05,.035,1.04,chrome,FX+.01,.775,0,bus);
-  for(let k=-6;k<=6;k++)box(.05,.4,.022,chrome,FX+.015,1.0,k*.075,bus);
-  const hlM=M(0xffffff,{emissive:0xe6eeff,emissiveIntensity:3}),drlM=M(0xffffff,{emissive:0xd7e2ff,emissiveIntensity:5});
-  [1,-1].forEach(sg=>{const h=box(.06,.13,.36,M(0x0b0d14,{metalness:.8,roughness:.1}),FX-.01,1.24,sg*.76,bus);box(.04,.07,.12,hlM,FX+.02,1.255,sg*.66,bus);box(.04,.07,.1,hlM,FX+.02,1.255,sg*.82,bus);
-    const drl=box(.03,.025,.34,drlM,FX+.025,1.185,sg*.76,bus);const wrap=box(.3,.12,.03,M(0x0b0d14,{metalness:.8,roughness:.1}),3.62,1.26,sg*(ZS+.02),bus);box(.22,.022,.03,drlM,3.64,1.2,sg*(ZS+.03),bus);
-    box(.05,.08,.14,M(0xffffff,{emissive:0xffffff,emissiveIntensity:1.2}),FX-.02,.6,sg*.78,bus)});
-  const hlS=[.76,-.76].map(z=>sprite(T.white,1.9,1.1,FX+.2,1.24,z,bus,.9));
-  box(.12,.32,1.98,satin,3.74,.58,0,bus);
-  const plate=canvasTex(256,64,(x,w,h)=>{x.fillStyle="#f2c200";x.fillRect(0,0,w,h);x.fillStyle="#1b5bd6";x.fillRect(0,0,26,h);x.fillStyle="#111";x.font="bold 40px sans-serif";x.textAlign="center";x.textBaseline="middle";x.fillText("684-28-703",w/2+12,h/2+2)});
-  const pl=new THREE.Mesh(new THREE.PlaneGeometry(.52,.13),new THREE.MeshStandardMaterial({map:plate,roughness:.5}));pl.position.set(3.81,.6,0);pl.rotation.y=Math.PI/2;bus.add(pl);
-  const beam=flat(T.white,9,4,8.6,0,.35,bus);
-
-  /* rear lights, roof AC, antenna, mirrors */
-  [.88,-.88].forEach(z=>{box(.05,.62,.12,M(0x330006,{emissive:0xff1a2a,emissiveIntensity:2.4}),-3.74,1.3,z,bus);sprite(T.red,1,1.5,-3.86,1.3,z,bus,.6)});
-  box(1.5,.16,1.3,M(0x0b0c12,{metalness:.5,roughness:.35}),.6,2.98,0,bus);box(1.3,.03,1.1,M(0x16181f,{roughness:.5}),.6,3.07,0,bus);
-  box(.03,.32,.03,satin,1.85,3.04,.2,bus).rotation.z=-.4;
-  [1,-1].forEach(sg=>{box(.05,.05,.26,satin,2.0,2.05,sg*(ZS+.12),bus);box(.14,.38,.07,paint,1.98,2.0,sg*(ZS+.27),bus);box(.02,.3,.05,glass,1.9,2.0,sg*(ZS+.27),bus)});
-
-  /* wheels with chrome hubcaps */
-  const tire=M(0x09090c,{roughness:.92});
-  const wheels=[[2.55,1],[2.55,-1],[-1.75,1],[-1.75,-1]].map(([x,sg])=>{const w=new THREE.Group(),tr=new THREE.Mesh(new THREE.CylinderGeometry(.38,.38,.24,36),tire);tr.rotation.x=Math.PI/2;w.add(tr);
-    const cap=new THREE.Mesh(new THREE.SphereGeometry(.24,28,14,0,Math.PI*2,0,Math.PI/2),chrome);cap.rotation.x=sg*Math.PI/2;cap.scale.set(1,.35,1);cap.position.z=sg*.12;w.add(cap);
-    for(let k=0;k<8;k++){const a=k*Math.PI/4,b=new THREE.Mesh(new THREE.CylinderGeometry(.022,.022,.03,8),M(0x1a1c22,{metalness:.8,roughness:.3}));b.rotation.x=Math.PI/2;b.position.set(Math.cos(a)*.17,Math.sin(a)*.17,sg*.145);w.add(b)}
-    w.position.set(x,.38,sg*.88);bus.add(w);return w});
-  const shadow=new THREE.Mesh(new THREE.PlaneGeometry(9.2,3.4),new THREE.MeshBasicMaterial({map:radial([[0,"rgba(0,0,0,.9)"],[.6,"rgba(0,0,0,.45)"],[1,"rgba(0,0,0,0)"]]),transparent:true,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=.02;bus.add(shadow);
-
-  /* rear-side lettering like on the van */
-  const lett=canvasTex(512,96,(x,w,h)=>{x.fillStyle="#f2f2f2";x.textAlign="center";x.textBaseline="middle";x.font="600 34px Assistant,Arial,sans-serif";x.direction="rtl";x.fillText("הסעות מטר",w/2,30);x.direction="ltr";x.font="600 30px Arial,sans-serif";x.fillText("052-4406710",w/2,72)});
-  const lt=new THREE.Mesh(new THREE.PlaneGeometry(.9,.17),new THREE.MeshBasicMaterial({map:lett,transparent:true,opacity:.85}));lt.position.set(-2.95,2.18,ZS+.008);bus.add(lt);
-
-  /* VIP swing door: hinge at the front edge, opens outward like in his night photo */
-  const DX0=.25,DX1=1.1,DW=DX1-DX0,DY=1.62,DH=1.94;
-  const inside=canvasTex(200,460,(x,w,h)=>{const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,"#2c48ff");g.addColorStop(.55,"#1226a8");g.addColorStop(1,"#071040");x.fillStyle=g;x.fillRect(0,0,w,h);
-    x.fillStyle="#cfdcff";x.fillRect(0,16,w,6);x.fillStyle="rgba(207,220,255,.6)";x.fillRect(0,44,w,3);
-    for(let i=0;i<2;i++){const sx=18+i*90,sy=150;x.fillStyle="#04081f";x.beginPath();if(x.roundRect)x.roundRect(sx,sy,74,210,16);else x.rect(sx,sy,74,210);x.fill();x.strokeStyle="rgba(150,175,255,.4)";x.lineWidth=1.4;
-      for(let d=-6;d<12;d++){x.beginPath();x.moveTo(sx+4,sy+20+d*16);x.lineTo(sx+70,sy+20+d*16+40);x.moveTo(sx+70,sy+20+d*16);x.lineTo(sx+4,sy+20+d*16+40);x.save();x.beginPath();x.rect(sx+4,sy+20,66,170);x.clip();x.stroke();x.restore()}}
-    x.fillStyle="#e6ecff";x.fillRect(0,h-14,w,4)});
-  const hole=new THREE.Mesh(new THREE.PlaneGeometry(DW,DH),new THREE.MeshBasicMaterial({map:inside}));hole.position.set((DX0+DX1)/2,DY,ZS+.003);bus.add(hole);
-  const seam=M(0x000000,{roughness:1});[[0,DH/2,DW+.03,.02],[0,-DH/2,DW+.03,.02],[-DW/2,0,.02,DH],[DW/2,0,.02,DH]].forEach(([dx,dy,w,h])=>box(w,h,.015,seam,(DX0+DX1)/2+dx,DY+dy,ZS+.006,bus));
-  const door=new THREE.Group();door.position.set(DX1,DY,ZS+.03);bus.add(door);
-  box(DW,DH,.045,paint,-DW/2,0,0,door);
-  const dg=box(DW-.12,.8,.012,glass,-DW/2,.5,.026,door);
-  box(.03,.16,.04,chrome,-DW+.1,-.05,.04,door);
-  const vipTx=canvasTex(256,128,(x,w,h)=>{const g=x.createLinearGradient(0,20,0,108);g.addColorStop(0,"#f6dc98");g.addColorStop(.5,"#d6a645");g.addColorStop(1,"#8f6620");x.fillStyle=g;x.font="700 84px Georgia,'Times New Roman',serif";x.textAlign="center";x.textBaseline="middle";x.fillText("VIP",w/2,h/2+4)});
-  const vip=new THREE.Mesh(new THREE.PlaneGeometry(.38,.19),new THREE.MeshStandardMaterial({map:vipTx,transparent:true,metalness:.7,roughness:.25}));vip.position.set(-DW/2,-.2,.026);door.add(vip);
-  const stepM=M(0xffffff,{emissive:0xdfe6ff,emissiveIntensity:0}),edgeM=M(0x2a2200,{emissive:0xf2c200,emissiveIntensity:0});
-  const stepG=new THREE.Group();stepG.position.set((DX0+DX1)/2,.5,ZS-.2);bus.add(stepG);box(DW-.06,.05,.3,stepM,0,0,0,stepG);box(DW-.06,.05,.04,edgeM,0,0,.16,stepG);
-  const doorGlow=sprite(T.blue,3.6,4,(DX0+DX1)/2-.2,1.6,ZS+.7,bus,0);
-  const floorGlow=flat(T.blue,3.4,2.6,(DX0+DX1)/2,ZS+1.2,0,bus);
-  const stepGlow=flat(T.white,1.6,1.2,(DX0+DX1)/2,ZS+.55,0,bus);
-  const inLight=new THREE.PointLight(0x3b5cff,0,8,1.6);inLight.position.set(.6,1.6,ZS+.9);bus.add(inLight);
-  const headL=new THREE.SpotLight(0xdfe8ff,2.4,34,.5,.6,1.2);headL.position.set(3.8,1.2,0);headL.target.position.set(14,0,0);bus.add(headL,headL.target);
-
-  /* timeline */
-  const ease=k=>1-Math.pow(1-k,3),io=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2,cl=(a,b,v)=>Math.min(b,Math.max(a,v)),seg=(t,a,b)=>cl(0,1,(t-a)/(b-a));
-  const lerp=(a,b,k)=>a+(b-a)*k,V=(x,y,z)=>new THREE.Vector3(x,y,z);
-  const C0=V(-5.5,2.5,12.5),C1=V(5.6,2.2,10.6),C2n=V(5.8,1.55,6.9),L2n=V(1.3,1.35,.8),C2w=V(6.4,1.55,7.4),L2w=V(.9,1.0,.6),L1=V(.4,1.35,0);
-  const START=-36,ARRIVE=2.7,DOOR=3.0,DOLLY=3.5,COPY=4.2,DONE=7.4,bar=$("#introBar");
-  let raf,t0=null,showed=false;
-  function frame(now){
-    if(t0===null)t0=now;const t=(now-t0)/1000;
-    const a=ease(seg(t,0,ARRIVE)),bx=lerp(START,0,a);bus.position.x=bx;
-    const settle=t>ARRIVE?Math.exp(-(t-ARRIVE)*4)*Math.sin((t-ARRIVE)*14)*.025:0;bus.position.y=settle;bus.rotation.z=t<ARRIVE?-.004*(1-a):-settle*.3;
-    wheels.forEach(w=>w.rotation.z=-(bx-START)/.47);
-    const fl=t>ARRIVE-.2&&t<ARRIVE+.5?(Math.sin((t-ARRIVE+.2)*28)>0?1.6:.6):1;hlS.forEach(s=>s.material.opacity=.9*fl);hlM.emissiveIntensity=3*fl;drlM.emissiveIntensity=5*fl;
-    beam.material.opacity=.35*(1-seg(t,DOLLY,DOLLY+.8)*.6);
-    door.rotation.y=1.25*io(seg(t,DOOR,DOOR+1.3));
-    const lit=seg(t,DOOR+.1,DOOR+1.2);inLight.intensity=4.5*lit;doorGlow.material.opacity=.9*lit;floorGlow.material.opacity=.55*lit;stepG.position.z=ZS-.2+.32*io(seg(t,DOOR+.2,DOOR+.9));glass.emissiveIntensity=.14+.5*lit;stepM.emissiveIntensity=2.2*lit;edgeM.emissiveIntensity=1.6*lit;stepGlow.material.opacity=.5*lit;
-    const c=io(seg(t,0,ARRIVE+.2)),c2=io(seg(t,DOLLY,DOLLY+1.9));
-    const C2=wide?C2w:C2n,L2=wide?L2w:L2n;cam.position.copy(C0).lerp(C1,c).lerp(C2,c2);
-    const look=V(lerp(bx+2.5,L1.x,c),L1.y,L1.z).lerp(L2,c2);cam.lookAt(look);
-    if(!showed&&t>COPY){showed=true;el.classList.add("show")}
-    bar.style.transform=`scaleX(${cl(0,1,t/DONE)})`;
-    R.render(S,cam);
-    if(t>DONE)end();
-    if(!ended||t<DONE+1)raf=requestAnimationFrame(frame);
-  }
-  stop=()=>{cancelAnimationFrame(raf);removeEventListener("resize",size);R.dispose()};
-  raf=requestAnimationFrame(frame);
-})();
 </script>
 
 </body>
