@@ -9,7 +9,7 @@ body{margin:0;font:14px/1.4 system-ui,-apple-system,sans-serif;-webkit-text-size
 img{max-width:100%}
 [hidden]{display:none!important}
 </style>
-<meta name="description" content="מטר הסעות – הסעות VIP לכל הארץ. מיניבוסים חדשים ונוחים מ־2 עד 60 מקומות, נתב״ג, מעבר נהר הירדן, חתונות, אילת וטיולים פרטיים. זמינות 24/7: 052-4406710">
+<meta name="description" content="מטר הסעות – הסעות VIP לכל הארץ. מיניבוסים חדשים ונוחים מ־6 עד 60 מקומות, נתב״ג, מעבר נהר הירדן, חתונות, אילת וטיולים פרטיים. זמינות 24/7: 052-4406710">
 <link rel="canonical" href="https://matar-transport.com/">
 <meta name="theme-color" content="#050817">
 <meta property="og:type" content="website">
@@ -86,7 +86,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:8;back
 header{box-shadow:0 1px 0 var(--led),0 8px 30px -10px var(--glow)}
 .trip,.fleet,.pack,.driver,.stat,.strip,.prices,details.group{box-shadow:0 0 0 1px var(--glow-soft),0 14px 44px -18px var(--glow)}
 .hero-photo,.gallery figure{box-shadow:0 0 60px -12px var(--glow)}
-.seat.on{background:linear-gradient(180deg,var(--led-hi),var(--led));border-color:var(--led);box-shadow:0 0 8px var(--glow)}
 .logo i{background:var(--led)!important;box-shadow:0 0 12px var(--led)!important}
 .vip{color:var(--led-hi);text-shadow:0 0 18px var(--led),0 0 42px var(--glow)}
 body.day .vip{color:var(--led);text-shadow:0 0 22px var(--glow-soft)}
@@ -132,20 +131,20 @@ input:focus,select:focus,textarea:focus{border-color:var(--led)!important;box-sh
 .vname{font-family:var(--display);font-size:clamp(1.5rem,3.5vw,2.2rem)}
 .vcap{color:var(--mute)}
 input[type=range]{width:100%;accent-color:var(--gold);height:28px}
-.vehicles{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.vehicles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .veh{background:var(--night);border:1px solid var(--line);border-radius:12px;padding:12px 8px 10px;color:var(--mute);cursor:pointer;display:grid;gap:4px;justify-items:center;font:600 .85rem var(--body);transition:border-color .2s,color .2s}
 .veh svg{width:100%;max-width:120px;height:44px}
 .veh[aria-pressed="true"]{border-color:var(--gold);color:var(--gold-hi);background:color-mix(in srgb,var(--gold) 8%,var(--night))}
 .veh b{font-family:var(--board);font-size:.8rem;font-variant-numeric:tabular-nums}
-@media (max-width:620px){.vehicles{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.veh{padding:8px 4px;font-size:.7rem}.veh .vl{display:none}.pax-wrap{grid-template-columns:1fr;gap:12px}.pax-num{text-align:start}}
-.hull-wrap{overflow-x:auto;padding-block:6px}
-.hull{display:inline-flex;align-items:stretch;gap:8px;border:2px solid var(--line);border-radius:28px 12px 12px 28px;padding:12px 14px;background:var(--night);transition:all .35s}
-[dir=rtl] .hull{border-radius:12px 28px 28px 12px}
-.nose{width:30px;border-inline-end:2px dashed var(--line);display:grid;place-items:center;color:var(--gold)}
-.nose svg{width:22px;height:22px}
-.seats{display:grid;grid-template-rows:repeat(2,18px) 10px repeat(2,18px);grid-auto-flow:column;grid-auto-columns:18px;column-gap:6px;row-gap:5px}
-.seat{border-radius:5px 5px 3px 3px;background:var(--flap);border:1px solid var(--line);transition:background .25s,border-color .25s,transform .25s}
-.seat.on{background:linear-gradient(180deg,var(--gold-hi),var(--gold));border-color:var(--gold);transform:translateY(-1px)}
+@media (max-width:620px){.vehicles{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.veh{padding:8px 4px;font-size:.7rem}.veh .vl{display:none}.pax-wrap{grid-template-columns:1fr;gap:12px}.pax-num{text-align:start}}
+.hull-wrap{overflow-x:auto;padding-block:6px;display:flex;justify-content:center}
+#carTop{display:block;height:auto;max-width:100%;overflow:visible;filter:drop-shadow(0 14px 22px var(--shade)) drop-shadow(0 0 26px var(--glow-soft))}
+[dir=rtl] #carTop{transform:scaleX(-1)}
+#carTop .st .cush,#carTop .st .back{fill:#1d2346;stroke:#2c356d;stroke-width:1;transition:fill .3s}
+#carTop .st .head{fill:#f4d48a;opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.3);transition:opacity .3s,transform .3s cubic-bezier(.3,1.6,.5,1)}
+#carTop .st.on .cush{fill:#d6a645;stroke:#f4d48a}
+#carTop .st.on .back{fill:#9c7224;stroke:#d6a645}
+#carTop .st.on .head{opacity:1;transform:scale(1)}
 .seat-note{color:var(--mute);font-size:.95rem;margin:4px 0 0}
 
 /* trips */
@@ -208,7 +207,22 @@ input[type=range]{width:100%;accent-color:var(--gold);height:28px}
 /* interior tour */
 .tour-btn{position:absolute;inset-block-start:14px;inset-inline-start:14px;display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--paper-ink);border:0;border-radius:999px;padding:8px 14px;font:700 .9rem var(--body);cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.4)}
 .tour-btn svg{width:18px;height:18px}
-.gallery figure.tall{cursor:zoom-in}
+.gallery figure,.hero-photo{cursor:zoom-in}
+.gallery figure img,.hero-photo img{transition:transform .5s ease}
+.gallery figure:hover img,.hero-photo:hover img{transform:scale(1.04)}
+dialog#lb{border:0;padding:0;margin:0;background:transparent;width:100vw;height:100vh;max-width:none;max-height:none;color:#eef1ff;overflow:hidden}
+dialog#lb[open]{display:grid;place-items:center}
+dialog#lb::backdrop{background:rgba(3,5,14,.94);backdrop-filter:blur(6px)}
+#lbImg{max-width:min(94vw,1300px);max-height:80vh;border-radius:14px;box-shadow:0 0 70px -10px var(--glow);user-select:none;touch-action:pan-y}
+.lb-cap{position:absolute;inset:auto 0 calc(18px + env(safe-area-inset-bottom,0px));text-align:center;margin:0;font:600 1rem var(--body);display:flex;justify-content:center;gap:12px}
+.lb-cap #lbNum{color:#8f99c8;font-family:var(--board)}
+.lb-x,.lb-nav{position:absolute;border:1px solid #2c356d;background:rgba(11,17,48,.75);color:#eef1ff;border-radius:50%;cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(6px)}
+.lb-x{top:calc(14px + env(safe-area-inset-top,0px));inset-inline-end:max(14px,env(safe-area-inset-right,0px));width:44px;height:44px;font:700 1.5rem/1 var(--body)}
+.lb-nav{top:50%;transform:translateY(-50%);width:50px;height:50px;font:700 1.8rem/1 var(--body)}
+[dir=rtl] .lb-nav{transform:translateY(-50%) scaleX(-1)}
+@media (max-width:600px){[dir=rtl] .lb-nav{transform:scaleX(-1)}}
+.lb-prev{inset-inline-start:max(12px,env(safe-area-inset-left,0px))}.lb-next{inset-inline-end:max(12px,env(safe-area-inset-right,0px))}
+@media (max-width:600px){.lb-nav{top:auto;bottom:calc(60px + env(safe-area-inset-bottom,0px));transform:none}}
 dialog#tour{border:0;padding:0;background:transparent;color:var(--ink);max-width:none;max-height:none;overflow:visible}
 dialog#tour::backdrop{background:rgba(4,5,10,.88);backdrop-filter:blur(4px)}
 .tour-stage{position:relative;width:min(92vw,calc(78vh * .75));aspect-ratio:3/4;max-width:100%;border-radius:18px;overflow:hidden;border:1px solid var(--led);box-shadow:0 0 80px -10px var(--glow)}
@@ -350,9 +364,9 @@ footer .logo{color:var(--ink)}
 <main class="wrap" id="top">
   <div class="hero">
     <div>
-      <div class="eyebrow" data-i="kicker">24/7 · 2–60 מקומות</div>
+      <div class="eyebrow" data-i="kicker">24/7 · 6–60 מקומות</div>
       <h1 id="heroTitle"><span class="gold-text">הסעות </span><span class="vip">VIP</span><span class="gold-text"> לכל הארץ</span></h1>
-      <p class="lead" data-i="hero_sub">רכבי VIP חדשים ונוחים, מ־2 ועד 60 מקומות. נהגים מקצועיים וזמינות מלאה, ביום ובלילה.</p>
+      <p class="lead" data-i="hero_sub">רכבי VIP חדשים ונוחים, מ־6 ועד 60 מקומות. נהגים מקצועיים וזמינות מלאה, ביום ובלילה.</p>
       <div class="cta-row">
         <a class="btn btn-gold" href="#book"><span data-i="cta_book">הזמינו הסעה</span></a>
         <a class="btn btn-ghost" id="heroWa" href="https://wa.me/972524406710" target="_blank" rel="noopener"><svg><use href="#wa"/></svg><span>WhatsApp</span></a>
@@ -360,7 +374,7 @@ footer .logo{color:var(--ink)}
       <div class="phone-line">052-4406710</div>
     </div>
 
-    <figure class="hero-photo"><img src="img/night.jpg" alt="Black Mercedes Sprinter VIP with its door open at night"><span class="tag">VIP · 24/7</span></figure>
+    <figure class="hero-photo" data-cap="cap6"><img src="img/night.jpg" alt="Black Mercedes Sprinter VIP with its door open at night"><span class="tag">VIP · 24/7</span></figure>
   </div>
 
   <div class="strip">
@@ -371,7 +385,7 @@ footer .logo{color:var(--ink)}
 
   <section id="fleet">
     <div class="sec-head">
-      <div class="eyebrow" data-i="fleet_kicker">הצי שלנו · 2 עד 60 מקומות</div>
+      <div class="eyebrow" data-i="fleet_kicker">הצי שלנו · 6 עד 60 מקומות</div>
       <h2 data-i="fleet_title">כמה אתם?</h2>
       <p data-i="fleet_sub">הזיזו את המחוון ותראו איזה רכב מתאים לקבוצה שלכם.</p>
     </div>
@@ -380,12 +394,12 @@ footer .logo{color:var(--ink)}
         <div class="pax-num gold-text" id="paxNum">14<small data-i="pax_label">נוסעים</small></div>
         <div class="pax-side">
           <div><div class="vname" id="vName">מיניבוס ספרינטר VIP</div><div class="vcap" id="vCap">עד 20 מקומות</div></div>
-          <input type="range" id="paxRange" min="1" max="60" value="14" aria-label="Passengers">
+          <input type="range" id="paxRange" min="6" max="60" value="14" aria-label="Passengers">
         </div>
       </div>
       <div class="vehicles" id="vehicles"></div>
       <div>
-        <div class="hull-wrap"><div class="hull"><div class="nose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 3v6.5M4 15l5.6-1.8M20 15l-5.6-1.8"/></svg></div><div class="seats" id="seats"></div></div></div>
+        <div class="hull-wrap"><svg id="carTop" role="img" aria-label="Seat map"></svg></div>
         <p class="seat-note" id="seatNote"></p>
       </div>
     </div>
@@ -412,9 +426,11 @@ footer .logo{color:var(--ink)}
   <section id="gallery" style="padding-top:0">
     <div class="gallery">
       <figure class="tall" id="tourFig"><img loading="lazy" decoding="async" src="img/interior.jpg" alt="Sprinter interior with quilted leather seats and blue ambient lighting"><button type="button" class="tour-btn" id="tourOpen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/></svg><span data-i="tour_cta">סיור בתוך הרכב</span></button><figcaption data-i="cap3">מושבי עור ותאורת אווירה</figcaption></figure>
-      <figure class="wide"><img loading="lazy" decoding="async" src="img/wedding.jpg" alt="Black Sprinter parked at an outdoor wedding venue"><figcaption data-i="cap4">מגיעים לחתונה</figcaption></figure>
-      <figure><img loading="lazy" decoding="async" src="img/van1.jpg" alt="Black Mercedes Sprinter VIP minibus"><figcaption data-i="cap1">ספרינטר VIP בירושלים</figcaption></figure>
-      <figure><img loading="lazy" decoding="async" src="img/van2.jpg" alt="Black Mercedes Sprinter at Fattal Terminal"><figcaption data-i="cap2">בטרמינל פתאל, נתב״ג</figcaption></figure>
+      <figure class="tall"><img loading="lazy" decoding="async" src="img/jerusalem.jpg" alt="Black VIP Sprinter with its door open in Jerusalem"><figcaption data-i="cap1">ספרינטר VIP בירושלים</figcaption></figure>
+      <figure><img loading="lazy" decoding="async" src="img/wedding.jpg" alt="Black Sprinter parked at an outdoor wedding venue"><figcaption data-i="cap4">מגיעים לחתונה</figcaption></figure>
+      <figure><img loading="lazy" decoding="async" src="img/deadsea.jpg" alt="Black Sprinter on a road above the Dead Sea"><figcaption data-i="cap5">בדרך לים המלח</figcaption></figure>
+      <figure class="wide"><img loading="lazy" decoding="async" src="img/fattal.jpg" alt="Black Sprinter at Fattal Terminal, Ben Gurion Airport"><figcaption data-i="cap2">בטרמינל פתאל, נתב״ג</figcaption></figure>
+      <figure><img loading="lazy" decoding="async" src="img/night.jpg" alt="Black VIP Sprinter with its door open at night"><figcaption data-i="cap6">איסוף לילי, 24/7</figcaption></figure>
     </div>
   </section>
 
@@ -467,7 +483,7 @@ footer .logo{color:var(--ink)}
         <div class="f"><label for="fTime" data-i="f_time">שעה</label><input id="fTime" type="time" value="05:30"></div>
         <div class="f ret" hidden><label for="fRetDate" data-i="f_ret_date">תאריך חזרה</label><input id="fRetDate" type="date"></div>
         <div class="f ret" hidden><label for="fRetTime" data-i="f_ret_time">שעת חזרה</label><input id="fRetTime" type="time" value="22:00"></div>
-        <div class="f"><label for="fPax" data-i="f_pax">מספר נוסעים</label><input id="fPax" type="number" min="1" max="60" value="14" inputmode="numeric"></div>
+        <div class="f"><label for="fPax" data-i="f_pax">מספר נוסעים</label><input id="fPax" type="number" min="6" max="60" value="14" inputmode="numeric"></div>
         <div class="f"><label for="fName" data-i="f_name">שם</label><input id="fName" autocomplete="name"></div>
         <div class="f full"><label for="fNote" data-i="f_note">הערות</label><textarea id="fNote"></textarea></div>
         <details class="group" id="grpBox">
@@ -522,6 +538,14 @@ footer .logo{color:var(--ink)}
   </section>
 </main>
 
+<dialog id="lb" aria-label="Photos">
+  <button type="button" class="lb-x" id="lbX" aria-label="Close">×</button>
+  <button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <img id="lbImg" alt="">
+  <button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+  <p class="lb-cap"><span id="lbCap"></span><span id="lbNum"></span></p>
+</dialog>
+
 <dialog id="tour" aria-label="Inside the Sprinter">
   <button type="button" class="tour-x" id="tourX" aria-label="Close">×</button>
   <div class="tour-stage"><div class="tour-pan"><img src="img/interior.jpg" alt="">
@@ -554,10 +578,10 @@ const PLACES=[["נתב״ג","مطار بن غوريون","Ben Gurion Airport",32
 const PACKS=[{type:3,round:true,rt:"23:30",pick:3,pax:20},{type:2,round:true,rt:"02:00",pick:3,pax:12},{type:0,round:false,pick:2,pax:6}];
 const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const I={
-he:{dir:"rtl",brand:"מטר הסעות",nav_fleet:"הצי",nav_trips:"נסיעות",nav_book:"הזמנה",kicker:"24/7 · 2–60 מקומות",hero_title:"הסעות VIP לכל הארץ",day:"יום",night:"לילה",hero_sub:"רכבי VIP חדשים ונוחים, מ־2 ועד 60 מקומות. נהגים מקצועיים וזמינות מלאה, ביום ובלילה.",cta_book:"הזמינו הסעה",
+he:{dir:"rtl",brand:"מטר הסעות",nav_fleet:"הצי",nav_trips:"נסיעות",nav_book:"הזמנה",kicker:"24/7 · 6–60 מקומות",hero_title:"הסעות VIP לכל הארץ",day:"יום",night:"לילה",hero_sub:"רכבי VIP חדשים ונוחים, מ־6 ועד 60 מקומות. נהגים מקצועיים וזמינות מלאה, ביום ובלילה.",cta_book:"הזמינו הסעה",
 p1:"נהגים מקצועיים",p1d:"אמינות ובטחון",p2:"שירות 24/7",p2d:"זמינות מלאה",p3:"נסיעה נוחה",p3d:"חוויה ברמה אחרת",
-fleet_kicker:"הצי שלנו · 2 עד 60 מקומות",fleet_title:"כמה אתם?",fleet_sub:"הזיזו את המחוון ותראו איזה רכב מתאים לקבוצה שלכם.",pax_label:"נוסעים",
-veh:["רכב מנהלים VIP","ג׳יפ יוקרתי","מיניבוס ספרינטר VIP","מידיבוס","אוטובוס"],vshort:["VIP","ג׳יפ","ספרינטר","מידיבוס","אוטובוס"],cap:"עד {n} מקומות",
+fleet_kicker:"הצי שלנו · 6 עד 60 מקומות",fleet_title:"כמה אתם?",fleet_sub:"הזיזו את המחוון ותראו איזה רכב מתאים לקבוצה שלכם.",pax_label:"נוסעים",
+veh:["ואן V-Class","מיניבוס ספרינטר VIP","מידיבוס","אוטובוס"],vshort:["V-Class","ספרינטר","מידיבוס","אוטובוס"],cap:"עד {n} מקומות",
 seatNote:"{p} מתוך {c} מושבים תפוסים. {f} מקומות פנויים.",seatFull:"כל {c} המושבים תפוסים.",
 trips_kicker:"כל סוגי העבודות",trips_title:"לאן נוסעים?",trips_sub:"בחרו סוג נסיעה ונמלא לכם את ההזמנה.",pick:"להזמנה ←",
 trips:[["הסעות לנתב״ג","איסוף מהבית בכל שעה, גם באמצע הלילה, עם מקום לכל המזוודות.","נתב״ג"],["הסעות למעבר נהר הירדן","הסעה נוחה עד המעבר לירדן ואיסוף בחזרה, בתיאום מראש לפי שעות המעבר.","מעבר נהר הירדן"],["הסעות למסיבה","כולם מגיעים יחד וחוזרים בבטחה, בלי לחפש נהג תורן.",""],["הסעות לחתונה","הסעת אורחים מהעיר לאולם וחזרה, בזמן ובסטייל.","אולם אירועים"],["הסעות לאילת","נסיעה ארוכה במושבי עור נוחים, עם עצירות לפי הצורך.","אילת"],["טיולים פרטיים","יום טיול בקצב שלכם: אתם בוחרים את המסלול, אנחנו נוהגים ומחכים בכל עצירה.",""],["הסעות","הסעות קבועות לעובדים, תלמידים וקבוצות, בכל יום ולכל מקום.",""],["כל עבודה אחרת","ימי גיבוש, קבוצות ספורט ואירועי חברה. ספרו לנו מה צריך.",""]],
@@ -570,16 +594,16 @@ qr_title:"סרקו והמשיכו בטלפון",qr_sub:"הקוד פותח צ׳א
 again_lbl:"ההזמנה הקודמת שלכם",again_btn:"להזמין שוב",add_stop:"+ נקודת איסוף נוספת",stop_lbl:"נקודת איסוף {n}",tk_stops:"+{n} נקודות איסוף",
 est:"≈ {k} ק״מ · בערך {d} (הערכה, בלי פקקים)",dur:["{h} ש׳ {m} דק׳","{m} דק׳"],
 grp_sum:"מארגנים קבוצה? ספרו מי מגיע",grp_event:"על מה ההסעה?",grp_ph:"חתונה, מסיבה, טיול...",grp_msg:"מי מגיע בהסעה ל{e} ב־{d}?\nתגיבו 🙋 ואני סופר/ת.",grp_share:"שיתוף בקבוצת וואטסאפ",grp_copy:"העתקת ההודעה",grp_count:"אישרו הגעה",grp_use:"להשתמש ב־{n} נוסעים",grp_def:"האירוע",
-cap1:"ספרינטר VIP בירושלים",cap2:"בטרמינל פתאל, נתב״ג",
+cap1:"ספרינטר VIP בירושלים",cap5:"בדרך לים המלח",cap6:"איסוף לילי, 24/7",cap2:"בטרמינל פתאל, נתב״ג",
 book_kicker:"הזמנה בדקה",book_title:"הכרטיס שלכם מוכן",book_sub:"מלאו את הפרטים, הכרטיס מתעדכן, ושולחים לנו בוואטסאפ. אנחנו חוזרים עם הצעת מחיר.",
 f_type:"סוג נסיעה",f_from:"מאיפה",f_to:"לאן",f_date:"תאריך",f_time:"שעה",f_pax:"מספר נוסעים",f_name:"שם",f_note:"הערות",
 ph_from:"עיר או כתובת איסוף",ph_to:"יעד",ph_name:"השם שלכם",ph_note:"חזור? עצירות? מזוודות גדולות?",defFrom:"",
 tk_label:"כרטיס עלייה",tk_pax:"נוסעים",tk_car:"רכב",tk_ref:"מספר",send:"שליחה בוואטסאפ",hint:"ההודעה נפתחת בוואטסאפ מוכנה לשליחה. לא נפתח? התקשרו או כתבו למספר:",copy:"העתקה",copied:"הועתק",
 foot:"פתוח 24 שעות, 7 ימים בשבוע",wa_hi:"שלום, אני רוצה להזמין הסעה:"},
-ar:{dir:"rtl",brand:"مطر للسفريات",nav_fleet:"الأسطول",nav_trips:"الرحلات",nav_book:"احجز",kicker:"24/7 · 2–60 مقعدًا",hero_title:"سفريات VIP لكل البلاد",day:"نهار",night:"ليل",hero_sub:"مركبات VIP جديدة ومريحة، من مقعدين حتى 60 مقعدًا. سائقون محترفون ومتوفرون ليلًا ونهارًا.",cta_book:"احجز سفرية",
+ar:{dir:"rtl",brand:"مطر للسفريات",nav_fleet:"الأسطول",nav_trips:"الرحلات",nav_book:"احجز",kicker:"24/7 · 6–60 مقعدًا",hero_title:"سفريات VIP لكل البلاد",day:"نهار",night:"ليل",hero_sub:"مركبات VIP جديدة ومريحة، من 6 حتى 60 مقعدًا. سائقون محترفون ومتوفرون ليلًا ونهارًا.",cta_book:"احجز سفرية",
 p1:"سائقون محترفون",p1d:"موثوقية وأمان",p2:"خدمة 24/7",p2d:"متوفرون دائمًا",p3:"رحلة مريحة",p3d:"تجربة بمستوى آخر",
-fleet_kicker:"أسطولنا · من 2 حتى 60 مقعدًا",fleet_title:"كم عددكم؟",fleet_sub:"حرّكوا المؤشر وشاهدوا المركبة المناسبة لمجموعتكم.",pax_label:"ركاب",
-veh:["سيارة VIP تنفيذية","جيب فاخر","ميني باص سبرينتر VIP","ميدي باص","حافلة"],vshort:["VIP","جيب","سبرينتر","ميدي باص","حافلة"],cap:"حتى {n} مقعدًا",
+fleet_kicker:"أسطولنا · من 6 حتى 60 مقعدًا",fleet_title:"كم عددكم؟",fleet_sub:"حرّكوا المؤشر وشاهدوا المركبة المناسبة لمجموعتكم.",pax_label:"ركاب",
+veh:["فان V-Class","ميني باص سبرينتر VIP","ميدي باص","حافلة"],vshort:["V-Class","سبرينتر","ميدي باص","حافلة"],cap:"حتى {n} مقعدًا",
 seatNote:"{p} من أصل {c} مقعدًا محجوزة. {f} مقاعد متاحة.",seatFull:"جميع المقاعد الـ{c} محجوزة.",
 trips_kicker:"كل أنواع المشاوير",trips_title:"إلى أين؟",trips_sub:"اختاروا نوع الرحلة ونعبّئ لكم الحجز.",pick:"احجز ←",
 trips:[["سفريات للمطار","توصيل من البيت في أي ساعة، حتى منتصف الليل، مع مكان لكل الحقائب.","مطار بن غوريون"],["سفريات لمعبر نهر الأردن","توصيل مريح حتى المعبر إلى الأردن والاستقبال عند العودة، بالتنسيق المسبق حسب ساعات المعبر.","معبر نهر الأردن"],["سفريات للحفلات","الجميع يصل معًا ويعود بأمان، بلا حاجة لسائق مناوب.",""],["سفريات للأعراس","نقل الضيوف من البلد إلى القاعة والعودة، في الموعد وبأناقة.","قاعة الأفراح"],["سفريات لإيلات","رحلة طويلة على مقاعد جلدية مريحة، مع توقفات حسب الحاجة.","إيلات"],["رحلات خاصة","يوم رحلة على راحتكم: أنتم تختارون المسار، ونحن نقود وننتظر عند كل توقف.",""],["سفريات","سفريات ثابتة للعمال والطلاب والمجموعات، كل يوم وإلى أي مكان.",""],["أي مشوار آخر","أيام ترفيه، فرق رياضية ومناسبات شركات. أخبرونا بما تحتاجون.",""]],
@@ -592,16 +616,16 @@ qr_title:"امسحوا وتابعوا من الهاتف",qr_sub:"الرمز يف
 again_lbl:"حجزكم السابق",again_btn:"احجز مرة أخرى",add_stop:"+ نقطة استلام أخرى",stop_lbl:"نقطة استلام {n}",tk_stops:"+{n} نقاط استلام",
 est:"≈ {k} كم · حوالي {d} (تقدير، بدون ازدحام)",dur:["{h} س {m} د","{m} د"],
 grp_sum:"تنظّمون مجموعة؟ احسبوا من سيأتي",grp_event:"لأي مناسبة السفرية؟",grp_ph:"عرس، حفلة، رحلة...",grp_msg:"مين جاي بالسفرية على {e} يوم {d}؟\nردّوا 🙋 وأنا بعدّ.",grp_share:"مشاركة في مجموعة واتساب",grp_copy:"نسخ الرسالة",grp_count:"أكّدوا الحضور",grp_use:"استخدام {n} ركاب",grp_def:"المناسبة",
-cap1:"سبرينتر VIP في القدس",cap2:"عند مبنى فتال، مطار بن غوريون",
+cap1:"سبرينتر VIP في القدس",cap5:"في الطريق إلى البحر الميت",cap6:"استلام ليلي، 24/7",cap2:"عند مبنى فتال، مطار بن غوريون",
 book_kicker:"حجز في دقيقة",book_title:"بطاقتكم جاهزة",book_sub:"املؤوا التفاصيل، تتحدث البطاقة، وأرسلوها لنا عبر واتساب. نعود إليكم بعرض سعر.",
 f_type:"نوع الرحلة",f_from:"من",f_to:"إلى",f_date:"التاريخ",f_time:"الساعة",f_pax:"عدد الركاب",f_name:"الاسم",f_note:"ملاحظات",
 ph_from:"البلد أو عنوان الاستلام",ph_to:"الوجهة",ph_name:"اسمكم",ph_note:"عودة؟ توقفات؟ حقائب كبيرة؟",defFrom:"",
 tk_label:"بطاقة صعود",tk_pax:"ركاب",tk_car:"المركبة",tk_ref:"رقم",send:"إرسال عبر واتساب",hint:"تُفتح الرسالة في واتساب جاهزة للإرسال. لم تُفتح؟ اتصلوا أو راسلوا الرقم:",copy:"نسخ",copied:"تم النسخ",
 foot:"مفتوح 24 ساعة، 7 أيام في الأسبوع",wa_hi:"مرحبًا، أريد حجز سفرية:"},
-en:{dir:"ltr",brand:"Matar Transport",nav_fleet:"Fleet",nav_trips:"Trips",nav_book:"Book",kicker:"24/7 · 2–60 seats",hero_title:"VIP transport all over the country",day:"Day",night:"Night",hero_sub:"New, comfortable VIP vehicles from 2 to 60 seats. Professional drivers, available day and night.",cta_book:"Book a ride",
+en:{dir:"ltr",brand:"Matar Transport",nav_fleet:"Fleet",nav_trips:"Trips",nav_book:"Book",kicker:"24/7 · 6–60 seats",hero_title:"VIP transport all over the country",day:"Day",night:"Night",hero_sub:"New, comfortable VIP vehicles from 6 to 60 seats. Professional drivers, available day and night.",cta_book:"Book a ride",
 p1:"Professional drivers",p1d:"Reliable and safe",p2:"24/7 service",p2d:"Always available",p3:"Comfortable ride",p3d:"A different level",
-fleet_kicker:"Our fleet · 2 to 60 seats",fleet_title:"How many of you?",fleet_sub:"Drag the slider to see which vehicle fits your group.",pax_label:"passengers",
-veh:["VIP executive car","Luxury SUV","Sprinter VIP minibus","Midibus","Coach"],vshort:["VIP","SUV","Sprinter","Midibus","Coach"],cap:"Up to {n} seats",
+fleet_kicker:"Our fleet · 6 to 60 seats",fleet_title:"How many of you?",fleet_sub:"Drag the slider to see which vehicle fits your group.",pax_label:"passengers",
+veh:["V-Class van","Sprinter VIP minibus","Midibus","Coach"],vshort:["V-Class","Sprinter","Midibus","Coach"],cap:"Up to {n} seats",
 seatNote:"{p} of {c} seats taken. {f} seats free.",seatFull:"All {c} seats taken.",
 trips_kicker:"Every kind of job",trips_title:"Where to?",trips_sub:"Pick a trip type and we'll fill in the booking for you.",pick:"Book this →",
 trips:[["Airport rides","Pickup from home at any hour, even mid-night, with room for every suitcase.","Ben Gurion Airport"],["Jordan River Crossing","A comfortable ride to the crossing into Jordan and pickup on your way back, arranged ahead around crossing hours.","Jordan River Crossing"],["Party rides","Everyone arrives together and gets home safe. Nobody has to stay sober to drive.",""],["Wedding shuttles","Guests from town to the venue and back, on time and in style.","Wedding venue"],["Eilat trips","The long drive on comfortable leather seats, with stops whenever you need.","Eilat"],["Private tours","A day out at your pace. You pick the route, we drive and wait at every stop.",""],["Shuttles","Regular shuttles for workers, students and groups, every day, anywhere.",""],["Any other job","Team days, sports teams and company events. Tell us what you need.",""]],
@@ -614,14 +638,14 @@ qr_title:"Scan and continue on your phone",qr_sub:"The code opens a WhatsApp cha
 again_lbl:"Your last booking",again_btn:"Book again",add_stop:"+ Add another pickup",stop_lbl:"Pickup {n}",tk_stops:"+{n} pickups",
 est:"≈ {k} km · about {d} (estimate, without traffic)",dur:["{h}h {m}m","{m} min"],
 grp_sum:"Organizing a group? Count who's coming",grp_event:"What's the ride for?",grp_ph:"Wedding, party, trip...",grp_msg:"Who's taking the shuttle to {e} on {d}?\nReply 🙋 and I'll count you in.",grp_share:"Share to a WhatsApp group",grp_copy:"Copy message",grp_count:"Confirmed",grp_use:"Use {n} passengers",grp_def:"the event",
-cap1:"Sprinter VIP in Jerusalem",cap2:"At Fattal Terminal, Ben Gurion",
+cap1:"Sprinter VIP in Jerusalem",cap5:"On the way to the Dead Sea",cap6:"Night pickup, 24/7",cap2:"At Fattal Terminal, Ben Gurion",
 book_kicker:"Book in a minute",book_title:"Your ticket is ready",book_sub:"Fill in the details, watch the ticket update, and send it on WhatsApp. We reply with a price.",
 f_type:"Trip type",f_from:"From",f_to:"To",f_date:"Date",f_time:"Time",f_pax:"Passengers",f_name:"Name",f_note:"Notes",
 ph_from:"Town or pickup address",ph_to:"Destination",ph_name:"Your name",ph_note:"Return trip? Stops? Large luggage?",defFrom:"",
 tk_label:"Boarding pass",tk_pax:"Pax",tk_car:"Vehicle",tk_ref:"Ref",send:"Send on WhatsApp",hint:"The message opens in WhatsApp ready to send. Didn't open? Call or message:",copy:"Copy",copied:"Copied",
 foot:"Open 24 hours, 7 days a week",wa_hi:"Hi, I'd like to book a ride:"}
 };
-const CAPS=[2,6,20,30,60];
+const CAPS=[7,20,30,60];
 const $=s=>document.querySelector(s);
 let L="he",pax=14,type=0,round=false;
 try{const s=localStorage.getItem("matar-lang");if(I[s])L=s}catch(e){}
@@ -631,25 +655,55 @@ const pickV=p=>CAPS.findIndex(c=>p<=c);
 const tpl=(s,o)=>s.replace(/\{(\w)\}/g,(_,k)=>o[k]);
 
 /* vehicles row */
-$("#vehicles").innerHTML=CAPS.map((c,i)=>`<button type="button" class="veh" data-v="${i}" aria-pressed="false"><svg><use href="#v${i}"/></svg><span class="vl"></span><b>${c}</b></button>`).join("");
+$("#vehicles").innerHTML=CAPS.map((c,i)=>`<button type="button" class="veh" data-v="${i}" aria-pressed="false"><svg><use href="#v${i+1}"/></svg><span class="vl"></span><b>${c}</b></button>`).join("");
 $("#vehicles").addEventListener("click",e=>{const b=e.target.closest(".veh");if(b)setPax(CAPS[+b.dataset.v])});
 
 function setPax(p){
-  pax=Math.max(1,Math.min(60,Math.round(+p)||1));
+  pax=Math.max(6,Math.min(60,Math.round(+p)||6));
   $("#paxRange").value=pax; if(document.activeElement!==$("#fPax"))$("#fPax").value=pax;
   renderFleet(); renderTicket();
+}
+
+/* top-down vehicle seat maps (metres; front faces +x; seats listed front to back) */
+const LAYOUT=[
+  {len:5.14,wid:1.93,nose:.95,glass:.55,axF:3.95,axR:1.05,r:.42,rows:[[3.3,"D_s"],[2.4,"sss"],[1.45,"sss"]]},
+  {len:7.37,wid:2.02,nose:.9,glass:.6,axF:6.2,axR:1.75,r:.38,rows:[[5.55,"D__s"],[4.7,"s_ss"],[3.95,"s_ss"],[3.2,"s_ss"],[2.45,"s_ss"],[1.7,"s_ss"],[.85,"ssss"]]},
+  {len:8.6,wid:2.3,nose:.25,glass:.45,axF:7.2,axR:2.1,r:.32,rows:[[7.45,"D___s"],[6.6,"ss_ss"],[5.85,"ss_ss"],[5.1,"ss_ss"],[4.35,"ss_ss"],[3.6,"ss_ss"],[2.85,"ss_ss"],[1.9,"sssss"]]},
+  {len:12.2,wid:2.55,nose:.2,glass:.5,axF:10.6,axR:2.7,r:.3,rows:[[11.05,"D____"]].concat(Array.from({length:15},(_,k)=>[10.25-k*.67,"ss_ss"]))}
+];
+let drawnV=-1;
+function drawCar(v){
+  const c=LAYOUT[v],S=56,M=20,W=c.len*S,H=c.wid*S,x=m=>M+m*S,y=m=>M+m*S,svg=$("#carTop");
+  svg.setAttribute("viewBox",`0 0 ${W+2*M} ${H+2*M}`);svg.setAttribute("width",W+2*M);svg.setAttribute("height",H+2*M);
+  const r=c.r*S,body=`M${x(0)+12},${y(0)} H${x(c.len)-r} Q${x(c.len)},${y(0)} ${x(c.len)},${y(0)+r} V${y(c.wid)-r} Q${x(c.len)},${y(c.wid)} ${x(c.len)-r},${y(c.wid)} H${x(0)+12} Q${x(0)},${y(c.wid)} ${x(0)},${y(c.wid)-12} V${y(0)+12} Q${x(0)},${y(0)} ${x(0)+12},${y(0)}Z`;
+  let o=`<defs><linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#2b47e6" stop-opacity=".55"/><stop offset="1" stop-color="#9db4ff" stop-opacity=".35"/></linearGradient></defs>`;
+  [c.axF,c.axR].forEach(a=>[[-.07,.3],[c.wid-.23,.3]].forEach(([wy,wh])=>{o+=`<rect x="${x(a-.38)}" y="${y(wy)}" width="${.76*S}" height="${wh*S}" rx="5" fill="#000"/>`}));
+  const mx=c.len-c.nose-c.glass+.05;
+  o+=`<rect x="${x(mx)}" y="${y(-.24)}" width="${.16*S}" height="${.2*S}" rx="3" fill="#06070c" stroke="#2c356d"/><rect x="${x(mx)}" y="${y(c.wid+.04)}" width="${.16*S}" height="${.2*S}" rx="3" fill="#06070c" stroke="#2c356d"/>`;
+  o+=`<path d="${body}" fill="#06070c" stroke="#d6a645" stroke-opacity=".55" stroke-width="1.5"/>`;
+  const cabEnd=c.len-c.nose-c.glass;
+  o+=`<rect x="${x(.18)}" y="${y(.13)}" width="${(cabEnd-.18)*S}" height="${(c.wid-.26)*S}" rx="8" fill="#0c1230"/>`;
+  o+=`<rect x="${x(.25)}" y="${y(.17)}" width="${(cabEnd-.32)*S}" height="2.5" fill="#3b5cff" opacity=".85"/><rect x="${x(.25)}" y="${y(c.wid-.17)-2.5}" width="${(cabEnd-.32)*S}" height="2.5" fill="#3b5cff" opacity=".85"/>`;
+  o+=`<path d="M${x(cabEnd)},${y(.1)} L${x(cabEnd+c.glass)},${y(.22)} L${x(cabEnd+c.glass)},${y(c.wid-.22)} L${x(cabEnd)},${y(c.wid-.1)}Z" fill="url(#gl)"/>`;
+  if(c.nose>.5)o+=`<line x1="${x(cabEnd+c.glass+.1)}" y1="${y(c.wid/2)}" x2="${x(c.len-.12)}" y2="${y(c.wid/2)}" stroke="#1d2346" stroke-width="2"/><line x1="${x(cabEnd+c.glass+.1)}" y1="${y(c.wid*.28)}" x2="${x(c.len-.15)}" y2="${y(c.wid*.32)}" stroke="#141a36"/><line x1="${x(cabEnd+c.glass+.1)}" y1="${y(c.wid*.72)}" x2="${x(c.len-.15)}" y2="${y(c.wid*.68)}" stroke="#141a36"/>`;
+  [.08,c.wid-.36].forEach(hy=>{o+=`<rect x="${x(c.len)-6}" y="${y(hy)}" width="7" height="${.28*S}" rx="3" fill="#eef3ff"/><rect x="${x(0)-1}" y="${y(hy)}" width="5" height="${.28*S}" rx="2" fill="#ff2a3a"/>`});
+  o+=`<rect x="${x(c.len-c.nose-c.glass-1.05)}" y="${y(c.wid)-3}" width="${.8*S}" height="5" rx="2" fill="#f2c200" opacity=".9"/>`;
+  const iw=c.wid-.34,seats=[];
+  c.rows.forEach(([rx,pat])=>{const n=pat.length,cw=iw/n,sw=Math.min(cw-.06,.5)*S,sd=.48*S;
+    [...pat].forEach((ch,k)=>{if(ch==="_")return;const cy=y(.17+cw*(k+.5)),cx=x(rx);
+      const g=`<rect class="back" x="${cx-sd/2-7}" y="${cy-sw/2}" width="9" height="${sw}" rx="3"/><rect class="cush" x="${cx-sd/2+3}" y="${cy-sw/2}" width="${sd}" height="${sw}" rx="5"/>`;
+      if(ch==="D")o+=`<g>${g.replace(/class="(back|cush)"/g,'fill="#1d2346" stroke="#3b5cff"')}<circle cx="${cx+3}" cy="${cy}" r="${sw*.28}" fill="#9db4ff"/><circle cx="${cx+sd/2+12}" cy="${cy}" r="${sw*.42}" fill="none" stroke="#9db4ff" stroke-width="2.5"/></g>`;
+      else seats.push(`<g class="st">${g}<circle class="head" cx="${cx+3}" cy="${cy}" r="${sw*.28}"/></g>`)})});
+  svg.innerHTML=o+seats.join("");
 }
 function renderFleet(){
   const t=I[L],v=pickV(pax),cap=CAPS[v];
   $("#paxNum").firstChild.nodeValue=pax;
   $("#vName").textContent=t.veh[v]; $("#vCap").textContent=tpl(t.cap,{n:cap});
   document.querySelectorAll(".veh").forEach((b,i)=>{b.setAttribute("aria-pressed",i===v);b.querySelector(".vl").textContent=t.vshort[i]});
-  const seats=$("#seats");
-  if(seats.childElementCount!==cap){
-    let h="";for(let i=0;i<cap;i++){const col=Math.floor(i/4)+1,lane=i%4,row=lane<2?lane+1:lane+2;h+=`<i class="seat" style="grid-column:${col};grid-row:${row}"></i>`}
-    seats.innerHTML=h;
-  }
-  [...seats.children].forEach((s,i)=>s.classList.toggle("on",i<pax));
+  if(drawnV!==v){drawCar(v);drawnV=v}
+  document.querySelectorAll("#carTop .st").forEach((g,i)=>{const on=i<pax;if(g.classList.contains("on")!==on){g.style.transitionDelay="0s";g.classList.toggle("on",on)}});
+  $("#carTop").setAttribute("aria-label",tpl(t.seatNote,{p:Math.min(pax,cap),c:cap,f:Math.max(0,cap-pax)}));
   $("#seatNote").textContent=pax>=cap?tpl(t.seatFull,{c:cap}):tpl(t.seatNote,{p:pax,c:cap,f:cap-pax});
 }
 $("#paxRange").addEventListener("input",e=>setPax(e.target.value));
@@ -765,7 +819,7 @@ $("#packs").addEventListener("click",e=>{
 function renderGroup(){
   const t=I[L],ev=$("#gEvent").value.trim()||t.grp_def,msg=tpl(t.grp_msg,{e:ev,d:dmy($("#fDate").value)});
   $("#gMsg").textContent=msg;$("#gShare").href="https://wa.me/?text="+encodeURIComponent(msg);
-  $("#gNum").value=grpN;$("#gNum").textContent=grpN;$("#gUse").textContent=tpl(t.grp_use,{n:Math.max(1,grpN)});$("#gUse").disabled=!grpN;
+  $("#gNum").value=grpN;$("#gNum").textContent=grpN;$("#gUse").textContent=tpl(t.grp_use,{n:Math.max(6,grpN)});$("#gUse").disabled=!grpN;
 }
 $("#gEvent").placeholder="";$("#gEvent").addEventListener("input",renderGroup);
 $("#gPlus").addEventListener("click",()=>{grpN=Math.min(60,grpN+1);renderGroup()});
@@ -785,7 +839,7 @@ $("#againBtn").addEventListener("click",()=>{
   const l=store.get("matar-last");if(!l)return;
   type=l.type||0;$("#fType").value=type;setRound(!!l.round);
   $("#fFrom").value=l.from||"";$("#fTo").value=l.to||"";$("#fTime").value=l.time||"";$("#fRetTime").value=l.rtime||"";$("#fName").value=l.name||"";$("#fNote").value=l.note||"";
-  $("#stops").innerHTML="";(l.stops||[]).forEach(x=>addStop(x));setPax(l.pax||1);
+  $("#stops").innerHTML="";(l.stops||[]).forEach(x=>addStop(x));setPax(l.pax||6);
 });
 
 /* day / night */
@@ -796,7 +850,16 @@ $("#themeBtn").addEventListener("click",()=>setTheme(!document.body.classList.co
 const tour=$("#tour");
 function openTour(){try{tour.showModal()}catch(e){tour.setAttribute("open","")}$("#tourCap").textContent=I[L].tour_hint;document.querySelectorAll(".hs").forEach(h=>h.setAttribute("aria-pressed","false"))}
 $("#tourOpen").addEventListener("click",e=>{e.stopPropagation();openTour()});
-$("#tourFig").addEventListener("click",openTour);
+/* photo viewer */
+const lb=$("#lb"),shots=[...document.querySelectorAll(".hero-photo,.gallery figure")];let lbI=0;
+function lbShow(i){lbI=(i+shots.length)%shots.length;const f=shots[lbI],im=f.querySelector("img"),k=f.dataset.cap||f.querySelector("figcaption")?.dataset.i;$("#lbImg").src=im.currentSrc||im.src;$("#lbImg").alt=im.alt;$("#lbCap").textContent=k?I[L][k]:"";$("#lbNum").textContent=`${lbI+1} / ${shots.length}`}
+function lbOpen(i){lbShow(i);try{lb.showModal()}catch(e){lb.setAttribute("open","")}}
+shots.forEach((f,i)=>f.addEventListener("click",()=>lbOpen(i)));
+$("#lbX").addEventListener("click",()=>lb.close());
+$("#lbNext").addEventListener("click",()=>lbShow(lbI+1));$("#lbPrev").addEventListener("click",()=>lbShow(lbI-1));
+lb.addEventListener("click",e=>{if(e.target===lb)lb.close()});
+lb.addEventListener("keydown",e=>{const rtl=document.documentElement.dir==="rtl";if(e.key==="ArrowRight")lbShow(lbI+(rtl?-1:1));if(e.key==="ArrowLeft")lbShow(lbI+(rtl?1:-1))});
+let sx=null;$("#lbImg").addEventListener("pointerdown",e=>{sx=e.clientX});$("#lbImg").addEventListener("pointerup",e=>{if(sx===null)return;const d=e.clientX-sx;sx=null;if(Math.abs(d)>40){const rtl=document.documentElement.dir==="rtl";lbShow(lbI+((d<0)!==rtl?1:-1))}});
 $("#tourX").addEventListener("click",()=>tour.close?tour.close():tour.removeAttribute("open"));
 tour.addEventListener("click",e=>{if(e.target===tour)tour.close()});
 document.querySelectorAll(".hs").forEach(h=>h.addEventListener("click",()=>{document.querySelectorAll(".hs").forEach(x=>x.setAttribute("aria-pressed",x===h));$("#tourCap").textContent=I[L].hs[+h.dataset.h]}));
